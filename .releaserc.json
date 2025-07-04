@@ -1,0 +1,21 @@
+{
+  "branches": ["main", "ci/fix-versioning"],
+  "plugins": [
+    ["@semantic-release/commit-analyzer"],
+    ["@semantic-release/release-notes-generator"],
+    ["@semantic-release/changelog", {
+      "changelogFile": "CHANGELOG.md"
+    }],
+    ["@semantic-release/github", {
+      "assets": [
+        { "path": "graphdbcli-linux-amd64", "label": "Linux amd64 binary" },
+        { "path": "graphdbcli-darwin-amd64", "label": "macOS amd64 binary" },
+        { "path": "graphdbcli-darwin-arm64", "label": "macOS arm64 binary" }
+      ]
+    }],
+    ["@semantic-release/git", {
+      "assets": ["CHANGELOG.md"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    }]
+  ]
+}
