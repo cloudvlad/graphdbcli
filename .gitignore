@@ -1,0 +1,13 @@
+.idea/
+graphdbcli
+graphdbcli-linux-amd64
+graphdbcli-darwin-amd64
+graphdbcli-darwin-arm64
+*.tar.gz
+*.sha256
+
+node_modules/
+
+package.json
+
+package-lock.json

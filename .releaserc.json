@@ -1,0 +1,22 @@
+{
+  "branches": ["main", "ci/fix-versioning"],
+  "plugins": [
+    ["@semantic-release/commit-analyzer"],
+    ["@semantic-release/release-notes-generator"],
+    ["@semantic-release/changelog", {
+      "changelogFile": "CHANGELOG.md"
+    }],
+    ["@semantic-release/github", {
+      "assets": [
+        { "path": "graphdbcli_linux_amd64.tar.gz", "label": "graphdbcli_linux_amd64.tar.gz" },
+        { "path": "graphdbcli_darwin_amd64.tar.gz", "label": "graphdbcli_darwin_amd64.tar.gz" },
+        { "path": "graphdbcli_darwin_arm64.tar.gz", "label": "graphdbcli_darwin_arm64.tar.gz" },
+        { "path": "checksums.sha256", "label": "checksums.sha256" }
+      ]
+    }],
+    ["@semantic-release/git", {
+      "assets": ["CHANGELOG.md"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+    }]
+  ]
+}
