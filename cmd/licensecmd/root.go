@@ -1,4 +1,4 @@
-// Package licensecmd /*
+// Package licensecmd
 //
 // Defines the license command and its subcommands.
 // The subcommands definition and logic is moved to
@@ -6,13 +6,16 @@
 package licensecmd
 
 import (
+	"context"
 	"graphdbcli/cmd/licensecmd/add"
-	"graphdbcli/cmd/licensecmd/list"
+	"graphdbcli/cmd/licensecmd/get"
 	"graphdbcli/cmd/licensecmd/remove"
+	"graphdbcli/cmd/licensecmd/show"
+
 	"github.com/spf13/cobra"
 )
 
-func License() *cobra.Command {
+func License(ctx context.Context) *cobra.Command {
 	command := &cobra.Command{
 		Use:     "license",
 		Short:   "Manages GraphDB licenses",
@@ -27,8 +30,9 @@ func License() *cobra.Command {
 	}
 
 	command.AddCommand(add.Command())
+	command.AddCommand(get.Command())
 	command.AddCommand(remove.Command())
-	command.AddCommand(list.Command())
+	command.AddCommand(show.Command())
 
 	return command
 }

@@ -9,14 +9,16 @@ import (
 	cu "graphdbcli/cmd/licensecmd/common_utils"
 	"graphdbcli/internal/tool_configurations/logging"
 	tc "graphdbcli/internal/tool_configurations/statics"
-	"go.uber.org/zap"
 	"os"
 	"path/filepath"
+
+	"go.uber.org/zap"
 )
 
 // RemoveLicenseFile is responsible for the deletion of a stored
 // license and the related information with it.
-func RemoveLicenseFile(licenseFilepath string) {
+func RemoveLicenseFile(selectedLicense string) {
+
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		logging.LOGGER.Fatal("Unable to get user home directory:",
@@ -26,7 +28,7 @@ func RemoveLicenseFile(licenseFilepath string) {
 
 	gdbDir := filepath.Join(homeDir, tc.HomeDirSpaceName)
 	licensesDir := filepath.Join(gdbDir, tc.LicensesDirName)
-	licenseFilename := filepath.Base(licenseFilepath)
+	licenseFilename := filepath.Base(selectedLicense)
 	storedLicensePath := filepath.Join(licensesDir, licenseFilename)
 
 	storedLicenseFile, err := os.Create(storedLicensePath)
@@ -39,7 +41,7 @@ func RemoveLicenseFile(licenseFilepath string) {
 		)
 	}
 
-	if !cu.CheckDoesLicensesDirExists() || !cu.CheckDoesLicenseFileExists(licenseFilepath) {
+	if !cu.CheckDoesLicensesDirExists() || !cu.CheckDoesLicenseFileExists(licenseFilename) {
 		fmt.Println("Error: License file or licenses directory does not exist.")
 		return
 	}

@@ -4,6 +4,7 @@ import (
 	"graphdbcli/cmd"
 	tc "graphdbcli/internal/tool_configurations/initialization"
 	"graphdbcli/internal/tool_configurations/logging"
+
 	"go.uber.org/zap"
 )
 
@@ -15,5 +16,9 @@ func main() {
 			logger.Fatal("Failed to sync logger", zap.Error(err))
 		}
 	}(logging.GetLogger())
-	cmd.Execute()
+	err := cmd.Execute()
+	if err != nil {
+		println(err.Error())
+		return
+	}
 }
