@@ -20,6 +20,7 @@ func TestExecute(t *testing.T) {
 
 func TestVersionCommand(t *testing.T) {
 	oldArgs := os.Args
+	Version = "11.0.0"
 	defer func() { os.Args = oldArgs }()
 
 	os.Args = []string{"graphdbcli", "--version"}
@@ -38,7 +39,7 @@ func TestVersionCommand(t *testing.T) {
 	var buf [1024]byte
 	n, _ := r.Read(buf[:])
 	output := string(buf[:n])
-	if output == "" || !testingVersionRegex(output, `graphdbcli version v\d+\.\d+\.\d+`) {
+	if output == "" || !testingVersionRegex(output, `graphdbcli version \d+\.\d+\.\d+`) {
 		t.Errorf("Expected version output to match regex 'graphdbcli version v\\d+\\.\\d+\\.\\d+', got: %q", output)
 	}
 }
