@@ -15,10 +15,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var Version = "x.y.z"
+
 // Execute is the command line applications entry function
 func Execute() error {
 	rootCmd := &cobra.Command{
-		Version: "v0.1.0",
+		Version: Version,
 		Use:     "graphdbcli",
 		Short:   shortDescription,
 		Long:    longDescription,

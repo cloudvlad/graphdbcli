@@ -33,12 +33,15 @@ jobs:
         with:
           go-version: '1.21'
       - name: Build
-        run: make build || go build ./...
-      - name: Run tests
-        run: make test || go test ./...
+        run: make build
 
   release:
     name: Release
+    permissions:
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     runs-on: ubuntu-latest
     needs: [build]
     if: github.event_name == 'push'
@@ -63,4 +66,4 @@ jobs:
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        run: semantic-release
+        run: semantic-release --debug

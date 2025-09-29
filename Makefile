@@ -17,16 +17,32 @@ all: build
 
 
 build:
-	go build -o $(BINARY_NAME)
+	@if [ -n "$(VERSION)" ]; then \
+		go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME); \
+	else \
+		go build -o $(BINARY_NAME); \
+	fi
 
 build-linux:
-	GOOS=linux GOARCH=amd64 go build -o $(BINARY_NAME)-linux-amd64
+	@if [ -n "$(VERSION)" ]; then \
+	  GOOS=linux GOARCH=amd64 go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME)-linux-amd64; \
+	else \
+	  GOOS=linux GOARCH=amd64 go build -o $(BINARY_NAME)-linux-amd64; \
+	fi
 
 build-macos-intel:
-	GOOS=darwin GOARCH=amd64 go build -o $(BINARY_NAME)-darwin-amd64
+	@if [ -n "$(VERSION)" ]; then \
+	  GOOS=darwin GOARCH=amd64 go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME)-darwin-amd64; \
+	else \
+	  GOOS=darwin GOARCH=amd64 go build -o $(BINARY_NAME)-darwin-amd64; \
+	fi
 
 build-macos-arm64:
-	GOOS=darwin GOARCH=arm64 go build -o $(BINARY_NAME)-darwin-arm64
+	@if [ -n "$(VERSION)" ]; then \
+	  GOOS=darwin GOARCH=arm64 go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME)-darwin-arm64; \
+	else \
+	  GOOS=darwin GOARCH=arm64 go build -o $(BINARY_NAME)-darwin-arm64; \
+	fi
 
 install:
 	@if [ "$(UNAME_S)" = "Darwin" ] || [ "$(UNAME_S)" = "Linux" ]; then \
