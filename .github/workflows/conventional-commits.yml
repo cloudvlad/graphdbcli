@@ -62,19 +62,19 @@ jobs:
         id: next_version
         run: |
           VERSION=$(npx semantic-release --dry-run | grep 'next release version is' | awk '{print $NF}')
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Build Linux binary
         run: make build-linux
         env:
-          VERSION: ${{ env.VERSION }}
+          VERSION: ${{ steps.next_version.outputs.version }}
       - name: Build macOS Intel binary
         run: make build-macos-intel
         env:
-          VERSION: ${{ env.VERSION }}
+          VERSION: ${{ steps.next_version.outputs.version }}
       - name: Build macOS ARM64 binary
         run: make build-macos-arm64
         env:
-          VERSION: ${{ env.VERSION }}
+          VERSION: ${{ steps.next_version.outputs.version }}
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
