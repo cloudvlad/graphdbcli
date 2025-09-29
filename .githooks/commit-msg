@@ -6,7 +6,7 @@ conventional_regex='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|te
 commit_msg=$(head -n1 "$commit_msg_file")
 
 if ! echo "$commit_msg" | grep -Eq "$conventional_regex"; then
-  echo "\033[0;31mERROR: Commit message does not follow Conventional Commits format." >&2
+  echo "ERROR: Commit message does not follow Conventional Commits format." >&2
   echo "Example: feat(parser): add new parsing logic" >&2
   exit 1
 fi
