@@ -7,13 +7,13 @@ permissions:
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ '**' ]
   push:
     branches: [ main ]
 
 jobs:
   conventional-commits:
-    name: Check Conventional Commits
+    name: Check Conventional Commits Conformity
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
@@ -24,8 +24,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build:
-    name: Build
+    name: Build & Test
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v4
       - name: Set up Go
@@ -33,12 +34,16 @@ jobs:
         with:
           go-version: '1.21'
       - name: Build
-        run: make build || go build ./...
+        run: make build
       - name: Run tests
-        run: make test || go test ./...
+        run: make test
 
   release:
     name: Release
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     runs-on: ubuntu-latest
     needs: [build]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -52,15 +57,26 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.21'
-      - name: Build Linux binary
-        run: make build-linux
-      - name: Build macOS Intel binary
-        run: make build-macos-intel
-      - name: Build macOS ARM64 binary
-        run: make build-macos-arm64
       - name: Install semantic-release and plugins
         run: npm install -g semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/github @semantic-release/exec
+      - name: Get next version
+        id: next_version
+        run: |
+          VERSION=$(npx semantic-release --dry-run | grep 'next release version is' | awk '{print $NF}')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Build Linux binary
+        run: make build-linux
+        env:
+          VERSION: ${{ env.VERSION }}
+      - name: Build macOS Intel binary
+        run: make build-macos-intel
+        env:
+          VERSION: ${{ env.VERSION }}
+      - name: Build macOS ARM64 binary
+        run: make build-macos-arm64
+        env:
+          VERSION: ${{ env.VERSION }}
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-        run: semantic-release
+        run: semantic-release --debug
