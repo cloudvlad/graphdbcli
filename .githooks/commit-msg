@@ -1,0 +1,12 @@
+commit_msg_file=$1
+
+# Regex for Conventional Commits (type(scope?): subject)
+conventional_regex='^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-zA-Z0-9_-]+\))?: .+'
+
+commit_msg=$(head -n1 "$commit_msg_file")
+
+if ! echo "$commit_msg" | grep -Eq "$conventional_regex"; then
+  echo "\033[0;31mERROR: Commit message does not follow Conventional Commits format." >&2
+  echo "Example: feat(parser): add new parsing logic" >&2
+  exit 1
+fi
