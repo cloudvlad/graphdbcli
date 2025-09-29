@@ -45,6 +45,8 @@ jobs:
       issues: write
       pull-requests: write
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.next_version.outputs.version }}
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
@@ -61,7 +63,7 @@ jobs:
       - name: Get next version
         id: next_version
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
           VERSION=$(npx semantic-release --dry-run | grep 'next release version is' | awk '{print $NF}')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
