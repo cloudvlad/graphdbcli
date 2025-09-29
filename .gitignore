@@ -1,2 +1,5 @@
 .idea/
 graphdbcli
+graphdbcli-linux-amd64
+graphdbcli-darwin-amd64
+graphdbcli-darwin-arm64

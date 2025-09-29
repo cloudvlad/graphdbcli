@@ -1,29 +1,37 @@
 UNAME_S := $(shell uname -s)
 BINARY_NAME=graphdbcli
 ifeq ($(UNAME_S),Darwin)
-	BINARY_EXT=
 	INSTALL_PATH=/usr/local/bin/$(BINARY_NAME)
 else ifeq ($(UNAME_S),Linux)
-	BINARY_EXT=
 	INSTALL_PATH=/usr/local/bin/$(BINARY_NAME)
 else
-	BINARY_EXT=
 	INSTALL_PATH=./$(BINARY_NAME)
 endif
-BIN_FILE=$(BINARY_NAME)$(BINARY_EXT)
 
-.PHONY: all build test fmt lint clean install
+
+.PHONY: all build build-linux build-macos test fmt lint clean install
+
 
 
 all: build
 
+
 build:
-	go build -o $(BIN_FILE)
+	go build -o $(BINARY_NAME)
+
+build-linux:
+	GOOS=linux GOARCH=amd64 go build -o $(BINARY_NAME)-linux-amd64
+
+build-macos-intel:
+	GOOS=darwin GOARCH=amd64 go build -o $(BINARY_NAME)-darwin-amd64
+
+build-macos-arm64:
+	GOOS=darwin GOARCH=arm64 go build -o $(BINARY_NAME)-darwin-arm64
 
 install:
 	@if [ "$(UNAME_S)" = "Darwin" ] || [ "$(UNAME_S)" = "Linux" ]; then \
-		echo "Installing $(BIN_FILE) to $(INSTALL_PATH)"; \
-		sudo cp $(BIN_FILE) $(INSTALL_PATH); \
+		echo "Installing $(BINARY_NAME) to $(INSTALL_PATH)"; \
+		sudo cp $(BINARY_NAME) $(INSTALL_PATH); \
 	else \
 		echo "Unsupported OS. Please install manually."; \
 	fi
