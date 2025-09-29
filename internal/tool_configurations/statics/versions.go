@@ -8,205 +8,95 @@ package statics
 type Version struct {
 	Version     string // Version that is following the Semantic versions standards
 	ReleaseDate string // ReleaseDate that the version was published
-	Url         string // Url is the distribution file locator
+	IpfsCID     string // IpfsCID is the distribution file locator
+	Sha256sum   string // Sha256sum is the hash of the file
 }
 
 // Versions contains all released versions.
 var Versions = []Version{
 	{
+		Version:     "11.1.0",
+		ReleaseDate: "21-08-2025",
+		IpfsCID:     "QmekYDgFoB5MQCQd9ZHcV9xAuodQWqseTQYhhm4BgAcs2b",
+		Sha256sum:   "29fbf76624b3bdfa9562c61987fe54110e4af53d628a029c8c543931cd7c2e5a",
+	},
+	{
+		Version:     "11.0.2",
+		ReleaseDate: "07-07-2025",
+		IpfsCID:     "QmWH5QWsGRzys67zRnQwPbXWEMzWGSakCjMJAxaxhNqQdu",
+		Sha256sum:   "7abac3ad5b47f4243fbda871f4e4695d0c978c5d4808beade81bf06cfcf6f30a",
+	},
+	{
 		Version:     "11.0.1",
 		ReleaseDate: "07-05-2025",
-		Url:         "https://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/11.0.1/graphdb-11.0.1-dist.zip",
+		IpfsCID:     "QmfVkYKEb4Ee7apkfp7SE1yD6K1Q1eS5NXrw4RAKE3WVtB",
+		Sha256sum:   "294ecbff5339a112a569a9ceb6efb0bd2e10755d067a0b9e22136fff3eaaf2f4",
 	},
 	{
 		Version:     "11.0.0",
 		ReleaseDate: "08-04-2025",
-		Url:         "https://download.ontotext.com/owlim/fd0e7994-13c2-11f0-87b0-42843b1b6b38/graphdb-11.0.0-dist.zip",
+		IpfsCID:     "QmS4x2PTM3EjRFxjYeX9zjJyDGu2cZnCjRepxNCudxk2mJ",
+		Sha256sum:   "408106abc4d1f75db6c854940b671d3caf760624812bd8a045c1d33748f5090d",
+	},
+	{
+		Version:     "10.8.8",
+		ReleaseDate: "05-06-2025",
+		IpfsCID:     "QmfEhBk86XWEwYTpxRXSvyekRBFth1Tv2r4fUwvSuBNEHy",
+		Sha256sum:   "b1bc91fbe01128569d9e680c0eec62d9a67baf704edf1554f578a1debd6ae2b7",
+	},
+	{
+		Version:     "10.8.9",
+		ReleaseDate: "14-07-2025",
+		IpfsCID:     "QmYKEsUDa7FL97toB8L6nPxtv38CASG4bDTEJCdDivpK8S",
+		Sha256sum:   "ef36698f1939a4ed0fdc8a74d30240ca946c5996bad8c59ec7c4eba1df635423",
 	},
 	{
 		Version:     "10.8.7",
 		ReleaseDate: "27-05-2025",
-		Url:         "https://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/10.8.7/graphdb-10.8.7-dist.zip",
+		IpfsCID:     "QmPXQr83wwgXrC4hDgT9fTbooJXWQd617FLkMfkPuqcSNR",
+		Sha256sum:   "35b46bbf95fc15c97730739dfc2a2932a2c10cb39866982449dc9245d2a4e2b6",
 	},
 	{
 		Version:     "10.8.6",
 		ReleaseDate: "16-05-2025",
-		Url:         "https://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/10.8.6/graphdb-10.8.6-dist.zip",
+		IpfsCID:     "QmVJEDdXc9N8WhwvQrUCWLixb9AWDSBRHdixnwPcb8ADFF",
+		Sha256sum:   "8968a6d4c5b9f2b709c54cd167341b61a65022de1a356b922ac8b77434d24423",
 	},
 	{
 		Version:     "10.8.5",
 		ReleaseDate: "08-04-2025",
-		Url:         "https://download.ontotext.com/owlim/6b4bd20e-0efe-11f0-8854-42843b1b6b38/graphdb-10.8.5-dist.zip",
+		IpfsCID:     "QmVqSn2xRWanZP9hnAYQwfe8sT59L1Zj7N9MUD4V6Bmy1L",
+		Sha256sum:   "7c3e0a2838f944fa887ddebaf3d7cac6801564d2701dea10144a97a51e28e21f",
 	},
 	{
 		Version:     "10.8.4",
 		ReleaseDate: "25-02-2025",
-		Url:         "https://download.ontotext.com/owlim/25801c00-f36d-11ef-8f23-42843b1b6b38/graphdb-10.8.4-dist.zip",
+		IpfsCID:     "QmfEcwaB6GWktwuwPYjkESUNkwpbHRMLUU4qFVbt4Ccip6",
+		Sha256sum:   "9a14dee2624e6fdce7c6ef797a89583a5f7a0c4447fc72603822a69f676c4f5d",
 	},
 	{
 		Version:     "10.8.3",
 		ReleaseDate: "28-01-2025",
-		Url:         "https://download.ontotext.com/owlim/b757bb32-dd6b-11ef-9c0f-42843b1b6b38/graphdb-10.8.3-dist.zip",
+		IpfsCID:     "Qmd5WmosmT8QZKNrwPZt4Q3CdQ6vh417viyqgBMKXNXS1T",
+		Sha256sum:   "1f4f1549d16a60fa5f90184b791070ce43a20255c1b29d194e8c3795fb2773ab",
 	},
 	{
 		Version:     "10.8.2",
 		ReleaseDate: "13-12-2024",
-		Url:         "https://download.ontotext.com/owlim/6122490c-b954-11ef-9c1d-42843b1b6b38/graphdb-10.8.2-dist.zip",
+		IpfsCID:     "QmRMnGtLEp2vFtuxeBxFANYSsJvaCYP4hH68vFis2n4Toa",
+		Sha256sum:   "460cdbc897c7001a8302016e4a27bad451dc2619716ed8208078e9a8db66a84e",
 	},
 	{
 		Version:     "10.8.1",
 		ReleaseDate: "02-12-2024",
-		Url:         "https://download.ontotext.com/owlim/72817dc2-ae59-11ef-834c-42843b1b6b38/graphdb-10.8.1-dist.zip",
+		IpfsCID:     "QmWy5z2fkD7xNF8NDQpmKDDkkM5QR3VvQneZQUC6Tpnx8c",
+		Sha256sum:   "3c03fc01312077f41214321e0e708d7c63f9c380fcbbf9b99c27923fa1a0c040",
 	},
 	{
 		Version:     "10.8.0",
 		ReleaseDate: "11-11-2024",
-		Url:         "https://download.ontotext.com/owlim/3efdafa8-a039-11ef-b262-42843b1b6b38/graphdb-10.8.0-dist.zip",
-	},
-	{
-		Version:     "10.7.6",
-		ReleaseDate: "15-10-2024",
-		Url:         "https://download.ontotext.com/owlim/2b42e0fc-8b01-11ef-afcb-42843b1b6b38/graphdb-10.7.6-dist.zip",
-	},
-	{
-		Version:     "10.7.5",
-		ReleaseDate: "Not officially released. Refer to 10.7.6.",
-		Url:         "https://download.ontotext.com/owlim/2b42e0fc-8b01-11ef-afcb-42843b1b6b38/graphdb-10.7.6-dist.zip",
-	},
-	{
-		Version:     "10.7.4",
-		ReleaseDate: "19-09-2024",
-		Url:         "https://download.ontotext.com/owlim/fe8b8a72-7684-11ef-a177-42843b1b6b38/graphdb-10.7.4-dist.zip",
-	},
-	{
-		Version:     "10.7.3",
-		ReleaseDate: "18-08-2024",
-		Url:         "https://download.ontotext.com/owlim/a364898c-5bdb-11ef-97f6-42843b1b6b38/graphdb-10.7.3-dist.zip",
-	},
-	{
-		Version:     "10.7.2",
-		ReleaseDate: "08-08-2024",
-		Url:         "https://download.ontotext.com/owlim/0f0b93b6-557d-11ef-8c5b-42843b1b6b38/graphdb-10.7.2-dist.zip",
-	},
-	{
-		Version:     "10.7.1",
-		ReleaseDate: "22-07-2024",
-		Url:         "https://download.ontotext.com/owlim/ab3e4b6a-45d9-11ef-ab7f-42843b1b6b38/graphdb-10.7.1-dist.zip",
-	},
-	{
-		Version:     "10.7.0",
-		ReleaseDate: "04-07-2024",
-		Url:         "https://download.ontotext.com/owlim/5e33af66-3a28-11ef-bdf5-42843b1b6b38/graphdb-10.7.0-dist.zip",
-	},
-	{
-		Version:     "10.6.4",
-		ReleaseDate: "07-06-2024",
-		Url:         "https://download.ontotext.com/owlim/0a7fade4-2406-11ef-9727-42843b1b6b38/graphdb-10.6.4-dist.zip",
-	},
-	{
-		Version:     "10.6.3",
-		ReleaseDate: "19-04-2024",
-		Url:         "https://download.ontotext.com/owlim/6568897e-fe40-11ee-a47f-42843b1b6b38/graphdb-10.6.3-dist.zip",
-	},
-	{
-		Version:     "10.6.2",
-		ReleaseDate: "08-03-2024",
-		Url:         "https://download.ontotext.com/owlim/5fc32688-dc98-11ee-ac5d-42843b1b6b38/graphdb-10.6.2-dist.zip",
-	},
-	{
-		Version:     "10.6.1",
-		ReleaseDate: "20-02-2024",
-		Url:         "https://download.ontotext.com/owlim/e4cbc400-cff2-11ee-aa1c-42843b1b6b38/graphdb-10.6.1-dist.zip",
-	},
-	{
-		Version:     "10.6.0",
-		ReleaseDate: "14-02-2024",
-		Url:         "https://download.ontotext.com/owlim/84ac68ce-cb3b-11ee-b99d-42843b1b6b38/graphdb-10.6.0-dist.zip",
-	},
-	{
-		Version:     "10.5.1",
-		ReleaseDate: "22-01-2024",
-		Url:         "https://download.ontotext.com/owlim/eb59afb0-b93d-11ee-9072-42843b1b6b38/graphdb-10.5.1-dist.zip",
-	},
-	{
-		Version:     "10.5.0",
-		ReleaseDate: "14-12-2023",
-		Url:         "https://download.ontotext.com/owlim/cee4d728-9a9e-11ee-b0a1-42843b1b6b38/graphdb-10.5.0-dist.zip",
-	},
-	{
-		Version:     "10.4.4",
-		ReleaseDate: "18-03-2024",
-		Url:         "https://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/10.4.4/graphdb-10.4.4-dist.zip",
-	},
-	{
-		Version:     "10.4.3",
-		ReleaseDate: "08-12-2023",
-		Url:         "https://download.ontotext.com/owlim/77edd30e-95a6-11ee-8161-42843b1b6b38/graphdb-10.4.3-dist.zip",
-	},
-	{
-		Version:     "10.4.2",
-		ReleaseDate: "20-11-2023",
-		Url:         "https://download.ontotext.com/owlim/8f46c1be-8796-11ee-a50e-42843b1b6b38/graphdb-10.4.2-dist.zip",
-	},
-	{
-		Version:     "10.4.1",
-		ReleaseDate: "01-11-2023",
-		Url:         "https://download.ontotext.com/owlim/ed77a766-7806-11ee-afce-42843b1b6b38/graphdb-10.4.1-dist.zip",
-	},
-	{
-		Version:     "10.4.0",
-		ReleaseDate: "17-10-2023",
-		Url:         "https://download.ontotext.com/owlim/4827d51e-6c36-11ee-9511-42843b1b6b38/graphdb-10.4.0-dist.zip",
-	},
-	{
-		Version:     "10.3.3",
-		ReleaseDate: "14-09-2023",
-		Url:         "https://download.ontotext.com/owlim/12f42f78-5246-11ee-9e53-42843b1b6b38/graphdb-10.3.3-dist.zip",
-	},
-	{
-		Version:     "10.3.2",
-		ReleaseDate: "01-09-2023",
-		Url:         "https://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/10.3.2/graphdb-10.3.2-dist.zip",
-	},
-	{
-		Version:     "10.3.1",
-		ReleaseDate: "01-08-2023",
-		Url:         "https://download.ontotext.com/owlim/13956f1e-3766-11ee-910e-42843b1b6b38/graphdb-10.3.1-dist.zip",
-	},
-	{
-		Version:     "10.3.0",
-		ReleaseDate: "17-07-2023",
-		Url:         "https://download.ontotext.com/owlim/06e1cb10-2496-11ee-b9aa-42843b1b6b38/graphdb-10.3.0-dist.zip",
-	},
-	{
-		Version:     "10.2.5",
-		ReleaseDate: "01-09-2023",
-		Url:         "https://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/10.2.5/graphdb-10.2.5-dist.zip",
-	},
-	{
-		Version:     "10.2.4",
-		ReleaseDate: "07-08-2023",
-		Url:         "https://download.ontotext.com/owlim/d331a62c-32ce-11ee-a90c-42843b1b6b38/graphdb-10.2.4-dist.zip",
-	},
-	{
-		Version:     "10.2.3",
-		ReleaseDate: "12-07-2023",
-		Url:         "https://download.ontotext.com/owlim/c239472e-20c9-11ee-9b9d-42843b1b6b38/graphdb-10.2.3-dist.zip",
-	},
-	{
-		Version:     "10.2.2",
-		ReleaseDate: "07-06-2023",
-		Url:         "https://download.ontotext.com/owlim/16090cd4-0506-11ee-91b1-42843b1b6b38/graphdb-10.2.2-dist.zip",
-	},
-	{
-		Version:     "10.2.1",
-		ReleaseDate: "25-04-2023",
-		Url:         "http://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/10.2.1/graphdb-10.2.1-dist.zip",
-	},
-	{
-		Version:     "10.2.0",
-		ReleaseDate: "28-02-2023",
-		Url:         "http://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/10.2.0/graphdb-10.2.0-dist.zip",
+		IpfsCID:     "QmSv62HH51wCyoSdpBeG5Dq3nkQAxvCgcHKPSooEy7qqzg",
+		Sha256sum:   "0753363dfb80d7a12432f46620b0d2e5d36eb44ade1f08ed4bef4cb4cf11a1b5",
 	},
 }
 

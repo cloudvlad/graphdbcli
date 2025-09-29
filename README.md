@@ -16,18 +16,12 @@ brew install graphdbcli
 ## Manual build from Source code
 
 ```shell
-go build .
-./graphdbcli -v
-# Copy in the appropriate directory
+make build
+make install
 ```
 
-## Install locally using Homebrew Formulae
-
-```shell
-git archive --format=tar.gz HEAD -o /tmp/graphdb-cli.tar.gz
-sed -i 's|url ".*"|url "file:///tmp/graphdb-cli.tar.gz"|' graphdb-cli.rb
-brew install --build-from-source graphdb-cli.rb
-```
+## Useful links
+[How to write CLI Help](https://bettercli.org/design/cli-help-page/#how-to-write-cli-help)
 
 ## Contacts
 [vladislav.nikolov@graphwise.ai](mailto://vladislav.nikolov@graphwise.ai)

@@ -5,48 +5,84 @@
 package install
 
 import (
+	"context"
+	"crypto/sha256"
 	"fmt"
+	"graphdbcli/internal/tool_configurations/initialization"
 	"graphdbcli/internal/tool_configurations/logging"
 	"graphdbcli/internal/tool_configurations/statics"
 	"graphdbcli/internal/tui/versiontui"
-	"github.com/enescakir/emoji"
-	"go.uber.org/zap"
+	"io"
 	"os"
 	"path/filepath"
+
+	"github.com/enescakir/emoji"
+	"go.uber.org/zap"
 )
+
+var isIntegrityCheckNeeded = false
 
 // installSelectedVersion install the provided version, that must follow the
 // rules for Semantic versioning.
-func installSelectedVersion(selectedVersion string) {
-	versionIndex := statics.GetVersionIndex(selectedVersion)
-	if versionIndex < 0 {
-		fmt.Printf("version %s not found. The latest available version: %s\n", selectedVersion, statics.Versions[0].Version)
-		logging.LOGGER.Fatal("unavailable versionw was specified",
-			zap.String("version", selectedVersion))
+func installSelectedVersion(version statics.Version) {
+	distDir := initialization.GetDistDirectory()
+	zipFile := filepath.Join(distDir, fmt.Sprintf("graphdb-%s.zip", version.Version))
+
+	if _, err := os.Stat(zipFile); os.IsNotExist(err) {
+		url := fmt.Sprintf("https://ipfs.io/ipfs/%s", version.IpfsCID)
+		if statics.IsTuiDisabled {
+			versiontui.NotTUIinstallVersion(context.Background(), version)
+		} else {
+			versiontui.DownloadWithProgressBar(version.Version, url, zipFile)
+		}
+
+		if versiontui.IsFileDownloadedSuccessful {
+			fmt.Printf("%s GraphDB version %s has been downloaded!\n", emoji.Rocket, version.Version)
+		} else {
+			fmt.Printf("%s GraphDB installation has been cancelled!\n", emoji.StopSign)
+			err = os.Remove(zipFile)
+			if err != nil {
+				fmt.Printf("Error removing file %s: %s\n", zipFile, err)
+				logging.LOGGER.Fatal("Error occured whilst removing the zip file", zap.Error(err), zap.String("zipFile", zipFile))
+				return
+			}
+		}
+	} else {
+		fmt.Printf("%s GraphDB version %s is already present!\n", emoji.BeachWithUmbrella, version.Version)
 	}
+}
 
-	version := statics.Versions[versionIndex]
-
-	homeDir, err := os.UserHomeDir()
-	if err != nil {
-		fmt.Println("Error: Unable to get user home directory:", err)
+// integrityCheck checks if the file was tempered with by
+// comparing the previously calculated and saved hash
+// with the one cacluated after downloading it
+func integrityCheck(version statics.Version) {
+	if !isIntegrityCheckNeeded {
+		logging.LOGGER.Debug("Skipping integrity check...")
 		return
 	}
 
-	gdbCliDir := filepath.Join(homeDir, statics.HomeDirSpaceName)
-	distDir := filepath.Join(gdbCliDir, statics.DistDirName)
-	zipFile := filepath.Join(distDir, fmt.Sprintf("graphdb-%s.zip", selectedVersion))
+	distDir := initialization.GetDistDirectory()
+	zipFile := filepath.Join(distDir, fmt.Sprintf("graphdb-%s.zip", version.Version))
 
-	if _, err := os.Stat(zipFile); os.IsNotExist(err) {
-		versiontui.DownloadWithProgressBar(selectedVersion, version.Url, zipFile)
-		if versiontui.IsFileDownloadedSucucessful() {
-			fmt.Printf("%s GraphDB version %s has been downloaded!\n", emoji.Rocket, selectedVersion)
-		} else {
-			fmt.Printf("%s GraphDB installation has been cancelled!\n", emoji.StopSign)
-			os.Remove(zipFile)
-		}
+	file, err := os.Open(zipFile)
+	if err != nil {
+		logging.LOGGER.Fatal("failed to open file for integrity check", zap.Error(err))
+	}
+	defer file.Close()
 
+	hasher := sha256.New()
+	if _, err := io.Copy(hasher, file); err != nil {
+		logging.LOGGER.Fatal("failed to hash file", zap.Error(err))
+	}
+	calculatedSum := fmt.Sprintf("%x", hasher.Sum(nil))
+
+	if calculatedSum != version.Sha256sum {
+		fmt.Printf("%s Integrity check failed\n", emoji.CrossMark)
+		logging.LOGGER.Fatal("integrity check failed: hash mismatch",
+			zap.String("expected", version.Sha256sum),
+			zap.String("actual", calculatedSum))
 	} else {
-		fmt.Printf("%s GraphDB version %s is already present!\n", emoji.BeachWithUmbrella, selectedVersion)
+		fmt.Printf("%s Integrity check passed\n", emoji.CheckMark)
+		logging.LOGGER.Info("integrity check passed")
 	}
 }

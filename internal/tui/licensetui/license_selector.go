@@ -1,10 +1,10 @@
 package licensetui
 
 import (
-	cu "graphdbcli/cmd/licensecmd/common_utils"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"graphdbcli/internal/data_objects/license"
 )
 
 var (
@@ -37,7 +37,7 @@ func (m versionSelectorModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 		if msg.String() == "enter" {
 			elementNumber := (m.list.Paginator.Page * m.list.Paginator.PerPage) + m.list.Cursor()
-			SelectedLicense = cu.GetLicensesData()[elementNumber].Name
+			SelectedLicense = license.GetLicensesData()[elementNumber].Name
 			return m, tea.Quit
 		}
 	case tea.WindowSizeMsg:
@@ -55,7 +55,6 @@ func (m versionSelectorModel) View() string {
 }
 
 func Initialize(versions []list.Item) *tea.Program {
-
 	m := versionSelectorModel{list: list.New(versions, list.NewDefaultDelegate(), 0, 0)}
 	m.list.Title = "Stored licenses"
 	m.list.ShowPagination()

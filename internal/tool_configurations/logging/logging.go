@@ -7,11 +7,12 @@ package logging
 import (
 	"fmt"
 	"graphdbcli/internal/tool_configurations/statics"
+	"os"
+	"path/filepath"
+
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
-	"os"
-	"path/filepath"
 )
 
 var LOGGER = GetLogger()
@@ -33,13 +34,13 @@ func GetLogger() *zap.Logger {
 		Filename:   logsFilePath,
 		MaxSize:    100,
 		MaxBackups: 3,
-		MaxAge:     1,
+		MaxAge:     10,
 	})
 
 	core := zapcore.NewCore(
 		zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig()),
 		writer,
-		zap.InfoLevel,
+		zap.DebugLevel,
 	)
 
 	logger := zap.New(core)

@@ -9,43 +9,50 @@ import (
 	cu "graphdbcli/cmd/licensecmd/common_utils"
 	"graphdbcli/internal/tool_configurations/logging"
 	tc "graphdbcli/internal/tool_configurations/statics"
-	"go.uber.org/zap"
 	"io"
 	"os"
 	"path/filepath"
+
+	"go.uber.org/zap"
 )
 
 // LicenseFileNoteContent is a globally used varibale, mainly set by the
 // CLI on execution by providing the -n/--note flag.
 var LicenseFileNoteContent string
 
+// NewLicenseFileName specified the new name of the license file after storing it
+// CLI on exection by providing the -r/--rename flag.
+var NewLicenseFileName string
+
 // StoreLicenseFile is more abstract method, containing additional
 // safety checks so on.
 func StoreLicenseFile(licenseFilepath string) {
-	if cu.CheckDoesLicenseFileExists(licenseFilepath) &&
-		cu.CheckDoesLicensesDirExists() {
-		storeProvidedLicense(licenseFilepath)
+	if cu.CheckDoesLicensesDirExists() {
+		licenseInfo, err := os.Stat(licenseFilepath)
+		if err != nil {
+			fmt.Println("The provided license does not exists")
+			logging.LOGGER.Fatal("the provided license does not exists", zap.Error(err))
+		}
+
+		if !licenseInfo.Mode().IsRegular() {
+			fmt.Println("The provided license file should be a regular file")
+			logging.LOGGER.Fatal("the provided license file was not a regular file")
+		}
+
+		licenseFilename := filepath.Base(licenseFilepath)
+		if !cu.CheckDoesLicenseFileExists(licenseFilename) {
+			storeProvidedLicense(licenseFilepath)
+		}
+
 	} else {
-		fmt.Println("Internal error occurred while store license file")
-		logging.LOGGER.Fatal("There was ",
-			zap.String("licenseFilepath", licenseFilepath),
-		)
+		fmt.Println("The licenses directory doesn't exists.")
+		logging.LOGGER.Fatal("The licenses directory doesn't exists.")
 	}
 }
 
 // storeProvidedLicense saves the license by copying the file located at the
 // provided path into the directory dedicated for storing license files.
 func storeProvidedLicense(licenseFilepath string) {
-	fileInformation, _ := os.Stat(licenseFilepath)
-
-	// cannot copy non-regular files (e.g., directories,
-	// symlinks, devices, etc.)
-	if !fileInformation.Mode().IsRegular() {
-		fmt.Println(logging.ErrorMessages[002].External)
-		logging.LOGGER.Fatal(logging.ErrorMessages[002].Internal,
-			zap.String("licenseFilepath", licenseFilepath))
-	}
-
 	originalLicenseFile, err := os.Open(licenseFilepath)
 	defer originalLicenseFile.Close()
 	if err != nil {
@@ -71,6 +78,10 @@ func storeProvidedLicense(licenseFilepath string) {
 	gdbDir := filepath.Join(homeDir, homeDirSpace)
 	licensesDir := filepath.Join(gdbDir, licensesDirName)
 	licenseFilename := filepath.Base(licenseFilepath)
+	if NewLicenseFileName != "" {
+		licenseFilename = NewLicenseFileName
+	}
+
 	copiedLicensePath := filepath.Join(licensesDir, licenseFilename)
 
 	storedLicenseFile, err := os.Create(copiedLicensePath)

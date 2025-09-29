@@ -17,3 +17,9 @@ var LogsDirName = "logs"
 
 // LicensesDirName Directory for storing the GraphDB licenses.
 var LicensesDirName = "licenses"
+
+// InstancesDirName Directory for storing the instances and their data
+var InstancesDirName = "instances"
+
+// ResourcesDirName Directory for storing the fetched resources
+var ResourcesDirName = "resources"
