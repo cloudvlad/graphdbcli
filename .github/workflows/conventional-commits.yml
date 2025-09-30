@@ -26,7 +26,11 @@ jobs:
   build:
     name: Build & Test
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' 
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - name: Set up Go
@@ -65,18 +69,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         run: |
+          npx semantic-release --dry-run
           VERSION=$(npx semantic-release --dry-run | grep 'next release version is' | awk '{print $NF}')
+          echo "::debug::Releasing $VERSION"
           echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Build Linux binary
-        run: make build-linux
+        run: |
+          echo "::debug::Building Linux binary with VERSION=${{ steps.next_version.outputs.version }}"
+          make build-linux
         env:
           VERSION: ${{ steps.next_version.outputs.version }}
       - name: Build macOS Intel binary
-        run: make build-macos-intel
+        run: |
+          echo "::debug::Building macOS Intel binary with VERSION=${{ steps.next_version.outputs.version }}"
+          make build-macos-intel
         env:
           VERSION: ${{ steps.next_version.outputs.version }}
       - name: Build macOS ARM64 binary
-        run: make build-macos-arm64
+        run: |
+          echo "::debug::Building macOS ARM64 binary with VERSION=${{ steps.next_version.outputs.version }}"
+          make build-macos-arm64
         env:
           VERSION: ${{ steps.next_version.outputs.version }}
       - name: Run semantic-release
