@@ -1,6 +1,13 @@
 # 1.0.0 (2025-09-30)
 
 
+### Features
+
+* release initial version ([690fd85](https://github.com/cloudvlad/graphdbcli/commit/690fd85fe0d76fddd97bbde3add0fb556f0f7a69))
+
+# 1.0.0 (2025-09-30)
+
+
 ### Bug Fixes
 
 * **ci:** fix CI not executed ([6d1ee4d](https://github.com/cloudvlad/graphdbcli/commit/6d1ee4d1ea8789b7d833c47adf6f79ede1654112))
