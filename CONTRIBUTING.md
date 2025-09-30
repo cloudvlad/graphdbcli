@@ -56,7 +56,7 @@ To ensure compliance, a Git commit hook is provided. This hook will stop any com
     cd graphdbcli
     ```
 2. Install Go (version 1.25.0 or later recommended).
-3. Install dependencies:
+3. Build the tool:
     ```shell
     make build
     ```
@@ -78,3 +78,6 @@ To ensure compliance, a Git commit hook is provided. This hook will stop any com
 
 ## Useful links
 [How to write CLI Help](https://bettercli.org/design/cli-help-page/#how-to-write-cli-help)
+[The ELM Architecture](https://guide.elm-lang.org/architecture/)
+[Bubble Tea](https://github.com/charmbracelet/bubbletea)
+[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
