@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/cloudvlad/graphdbcli/compare/v1.0.0...v1.1.0) (2025-09-30)
+
+
+### Features
+
+* **ci:** fix versioning ([e3e7f78](https://github.com/cloudvlad/graphdbcli/commit/e3e7f78fba5d0d9d454003913d78201045df0760))
+
 # 1.0.0 (2025-09-29)
 
 
