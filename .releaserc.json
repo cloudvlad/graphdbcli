@@ -1,5 +1,5 @@
 {
-  "branches": ["main", "ci-cd-fix"],
+  "branches": ["main", "ci/fix-versioning"],
   "plugins": [
     ["@semantic-release/commit-analyzer"],
     ["@semantic-release/release-notes-generator"],
