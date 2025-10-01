@@ -9,31 +9,16 @@ GraphDB CLI is an open-source command-line tool for managing GraphDB instances, 
 
 ## Installation
 
-### Homebrew (recommended)
-
-```shell
-brew install graphdbcli
-```
-
 ### Manual build
 
 ```shell
 make build
-sudo make install
 ```
 
-### Linux binary installation
-
-1. Install the needed CLI tool version.
-
-2. Rename the tool as needed
-    ```shell
-    mv ./graphdbcli-linux-amd64 ./graphdbcli
-    ```
-3. Install the tool for global access
-    ```shell
-    mv ./graphdbcli /usr/local/bin/graphdbcli
-    ```
+### Installation
+```shell
+sudo make install
+```
 
 ## Usage
 
