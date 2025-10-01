@@ -4,7 +4,8 @@ package versioncmd
 import (
 	"context"
 	"graphdbcli/cmd/versioncmd/install"
-	"graphdbcli/cmd/versioncmd/show"
+	"graphdbcli/cmd/versioncmd/list"
+	"graphdbcli/internal/tui/common_components"
 
 	"github.com/spf13/cobra"
 )
@@ -14,7 +15,7 @@ func Version(ctx context.Context) *cobra.Command {
 		Use:     "version",
 		Short:   shortDescription,
 		Long:    longDescription,
-		Example: examples,
+		Example: common_components.PadExamples(examples),
 		Aliases: []string{"versions", "v"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if len(args) == 0 {
@@ -24,7 +25,7 @@ func Version(ctx context.Context) *cobra.Command {
 		},
 	}
 
-	command.AddCommand(show.Command(ctx))
+	command.AddCommand(list.Command(ctx))
 	command.AddCommand(install.Command(ctx))
 
 	return command

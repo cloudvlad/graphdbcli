@@ -2,15 +2,16 @@ package versiontui
 
 import (
 	"graphdbcli/internal/tool_configurations/statics"
+
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"graphdbcli/internal/data_objects/install"
 )
 
 var (
 	docStyle = lipgloss.NewStyle().Margin(1, 2)
 )
-var SelectedVersion string
 
 type Item struct {
 	Version, ReleaseDate string
@@ -37,7 +38,7 @@ func (m versionSelectorModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		if msg.String() == "enter" {
 			elementNumber := (m.list.Paginator.Page * m.list.Paginator.PerPage) + m.list.Cursor()
 			version := statics.Versions[elementNumber].Version
-			SelectedVersion = version
+			install.SelectedVersion = version
 			return m, tea.Quit
 		}
 	case tea.WindowSizeMsg:
