@@ -16,7 +16,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	tea "github.com/charmbracelet/bubbletea"
 	"github.com/enescakir/emoji"
 	"go.uber.org/zap"
 )
@@ -75,14 +74,7 @@ func ConfigureInstance(zipFilePath, nodeFolder string) error {
 	return nil
 }
 
-func configureInstancePort(port string, p *tea.Program) {
-	if !isPortOpen(port) {
-		cc.HandleEvent(&cc.Failure, p)
-		fmt.Printf("%s Port %s is not open\n", common_components.PadStatusIndicator(emoji.RedCircle.String(), 0), port)
-		logging.LOGGER.Fatal("The following port is not open",
-			zap.String("port", port))
-	}
-
+func configureInstancePort(port string) {
 	propertyName := properties_manager.GDB10_8["instancePort"]
 	properties_manager.FindAndReplacePropertie(&c.Instance.PropertyOverrides, propertyName, port)
 }
@@ -91,12 +83,6 @@ func configureInstancePort(port string, p *tea.Program) {
 // It will store it with the default name that GraphDB expects,
 // ignoring the name set when storing it.
 func configureInstanceLicense(licenseName, instanceName string) {
-	if c.Instance.StoredLicenseFilename == "" {
-		fmt.Printf("%s No license file specified. Skipping...", common_components.PadStatusIndicator(emoji.NextTrackButton.String(), tc.NotTUIStatusIndicatorAdditionalPadding))
-		logging.LOGGER.Warn("no license file specified")
-		return
-	}
-
 	fmt.Printf("%s Using license file %s\n", common_components.PadStatusIndicator(emoji.Information.String(), tc.NotTUIStatusIndicatorAdditionalPadding), c.Instance.StoredLicenseFilename)
 	licensePath := path.Join(ini.GetLicensesDirectory(), licenseName)
 	license, err := os.ReadFile(licensePath)

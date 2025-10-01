@@ -3,7 +3,7 @@ package commons
 import (
 	"context"
 	"fmt"
-	"graphdbcli/internal/channels/commons"
+	channels "graphdbcli/internal/channels/commons"
 	"graphdbcli/internal/tui/common_components"
 	sp "graphdbcli/internal/tui/instancetui/create"
 	"net/http"
@@ -12,8 +12,8 @@ import (
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-func CheckProtocolEndpointAccessible(ctx context.Context, ctxCancel context.CancelFunc, port string, successChannel, failureChannel *chan bool, p *tea.Program) {
-	p = tea.NewProgram(common_components.InitialModel(ctx, ctxCancel, sp.CheckingIsInstanceAccessible, successChannel, failureChannel))
+func CheckProtocolEndpointAccessible(ctx context.Context, ctxCancel context.CancelFunc, port string) {
+	p = tea.NewProgram(common_components.InitialModel(ctx, ctxCancel, sp.CheckingIsInstanceAccessible, &channels.Success, &channels.Failure))
 	go func() {
 		p.Run()
 	}()
@@ -27,7 +27,7 @@ func CheckProtocolEndpointAccessible(ctx context.Context, ctxCancel context.Canc
 		resp, err := http.Get(protocolURL)
 		if err == nil && resp.StatusCode == http.StatusOK {
 			resp.Body.Close()
-			commons.HandleEvent(successChannel, p)
+			channels.HandleEvent(&channels.Success, p)
 			return
 		}
 		if resp != nil {
@@ -37,5 +37,5 @@ func CheckProtocolEndpointAccessible(ctx context.Context, ctxCancel context.Canc
 		time.Sleep(retryDelay)
 	}
 
-	commons.HandleEvent(failureChannel, p)
+	channels.HandleEvent(&channels.Success, p)
 }

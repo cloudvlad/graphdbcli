@@ -19,7 +19,7 @@ var CheckingForPresentInstance = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Checking for the specified instance in-progress...",
+		Message: " Checking for the specified instance in-progress...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -38,7 +38,7 @@ var FetchingInstancePID = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Fetching instance proced ID in progress...",
+		Message: " Fetching instance proced ID in progress...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -57,7 +57,7 @@ var CheckingIsInstanceRunning = spinner_status.SpinnerStatuses{
 		Status:  emoji.RightArrow,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Determining whether the instance is running...",
+		Message: " Determining whether the instance is running...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -76,7 +76,7 @@ var StoppingInstance = spinner_status.SpinnerStatuses{
 		Status:  emoji.RightArrow,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Stopping the instance...",
+		Message: " Stopping the instance...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -95,7 +95,7 @@ var PurgeInstanceSpace = spinner_status.SpinnerStatuses{
 		Status:  emoji.RightArrow,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Determining whether the instance is running...",
+		Message: " Determining whether the instance is running...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{

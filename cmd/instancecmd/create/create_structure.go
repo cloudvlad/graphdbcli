@@ -2,14 +2,18 @@ package create
 
 import (
 	"context"
+	"fmt"
 	cc "graphdbcli/internal/channels/commons"
 	c "graphdbcli/internal/data_objects/graphdb_cluster"
 	ini "graphdbcli/internal/tool_configurations/initialization"
+	"graphdbcli/internal/tool_configurations/logging"
+	tc "graphdbcli/internal/tool_configurations/statics"
 	"graphdbcli/internal/tui/common_components"
 	sp "graphdbcli/internal/tui/instancetui/create"
 	"path"
 
 	tea "github.com/charmbracelet/bubbletea"
+	"github.com/enescakir/emoji"
 )
 
 var p *tea.Program
@@ -38,6 +42,12 @@ func createInstanceStructure(ctx context.Context, ctxCancel context.CancelFunc) 
 	}()
 	ConfigureProperties(c.Instance.Name, p)
 
+	if c.Instance.StoredLicenseFilename == "" {
+		fmt.Printf("%s No license file specified. Skipping...", common_components.PadStatusIndicator(emoji.NextTrackButton.String(), tc.NotTUIStatusIndicatorAdditionalPadding))
+		logging.LOGGER.Warn("no license file specified")
+		return
+	}
+	
 	p = tea.NewProgram(common_components.InitialModel(ctx, ctxCancel, sp.SettingUpLicense, &cc.Success, &cc.Failure))
 	go func() {
 		p.Run()

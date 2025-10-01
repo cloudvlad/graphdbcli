@@ -24,14 +24,11 @@ func PadExamples(example string) string {
 // PadStatusIndicator pads the status with spaces after it
 func PadStatusIndicator(status string, additional int) string {
 	w := runewidth.StringWidth(status)
-	//println(status, w)
-	if w == 1 {
-		w = 2
-	}
+
 	if w < statics.TUIStatusIndicatorWidth {
-		return status + strings.Repeat("+", statics.TUIStatusIndicatorWidth-w)
+		return status + strings.Repeat(" ", statics.TUIStatusIndicatorWidth-w)
 	}
 
-	status += strings.Repeat("~", additional)
+	status += strings.Repeat(" ", additional)
 	return status
 }
