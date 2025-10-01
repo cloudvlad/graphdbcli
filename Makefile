@@ -9,40 +9,30 @@ else
 endif
 
 
-.PHONY: all build build-linux build-macos test fmt lint clean install
+.PHONY: all package test fmt lint clean install build
 
 
 
 all: build
 
 
-build:
-	@if [ -n "$(VERSION)" ]; then \
-		go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME); \
-	else \
-		go build -o $(BINARY_NAME); \
-	fi
-
-build-linux:
-	@if [ -n "$(VERSION)" ]; then \
-	  GOOS=linux GOARCH=amd64 go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME)-linux-amd64; \
-	else \
-	  GOOS=linux GOARCH=amd64 go build -o $(BINARY_NAME)-linux-amd64; \
-	fi
-
-build-macos-intel:
-	@if [ -n "$(VERSION)" ]; then \
-	  GOOS=darwin GOARCH=amd64 go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME)-darwin-amd64; \
-	else \
-	  GOOS=darwin GOARCH=amd64 go build -o $(BINARY_NAME)-darwin-amd64; \
-	fi
-
-build-macos-arm64:
-	@if [ -n "$(VERSION)" ]; then \
-	  GOOS=darwin GOARCH=arm64 go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME)-darwin-arm64; \
-	else \
-	  GOOS=darwin GOARCH=arm64 go build -o $(BINARY_NAME)-darwin-arm64; \
-	fi
+package:
+	@if [ -z "$(GOOS)" ] || [ -z "$(GOARCH)" ]; then \
+        if [ -n "$(VERSION)" ]; then \
+            go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME); \
+        else \
+            go build -o $(BINARY_NAME); \
+        fi; \
+    else \
+        if [ -n "$(VERSION)" ]; then \
+            GOOS=$(GOOS) GOARCH=$(GOARCH) go build -ldflags "-X graphdbcli/cmd.Version=$(VERSION)" -o $(BINARY_NAME); \
+        else \
+            GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o $(BINARY_NAME); \
+        fi; \
+        chmod +x $(BINARY_NAME); \
+        TAR_NAME=$(BINARY_NAME)_$(GOOS)_$(GOARCH).tar.gz; \
+        tar -czvf $$TAR_NAME $(BINARY_NAME) LICENSE README.md CHANGELOG.md; \
+    fi
 
 install:
 	@if [ "$(UNAME_S)" = "Darwin" ] || [ "$(UNAME_S)" = "Linux" ]; then \
@@ -51,6 +41,9 @@ install:
 	else \
 		echo "Unsupported OS. Please install manually."; \
 	fi
+
+build:
+	go build -o $(BINARY_NAME)
 
 fmt:
 	go fmt ./...

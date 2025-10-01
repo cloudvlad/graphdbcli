@@ -76,21 +76,23 @@ jobs:
       - name: Build Linux binary
         run: |
           echo "::debug::Building Linux binary with VERSION=${{ steps.next_version.outputs.version }}"
-          make build-linux
+          make package GOOS=linux GOARCH=amd64
         env:
           VERSION: ${{ steps.next_version.outputs.version }}
       - name: Build macOS Intel binary
         run: |
           echo "::debug::Building macOS Intel binary with VERSION=${{ steps.next_version.outputs.version }}"
-          make build-macos-intel
+          make package GOOS=darwin GOARCH=amd64
         env:
           VERSION: ${{ steps.next_version.outputs.version }}
       - name: Build macOS ARM64 binary
         run: |
           echo "::debug::Building macOS ARM64 binary with VERSION=${{ steps.next_version.outputs.version }}"
-          make build-macos-arm64
+          make package GOOS=darwin GOARCH=arm64
         env:
           VERSION: ${{ steps.next_version.outputs.version }}
+      - name: Generate checksums
+        run: make checksums
       - name: Run semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
