@@ -66,8 +66,8 @@ func destroyInstance(instanceName string) {
 		return
 	}
 
-	fmt.Printf("%s Instance %s removed. Exiting... \n",
-		common_components.PadStatusIndicator(emoji.GreenCircle.String(), 0),
+	fmt.Printf("%s Instance %s removed \n",
+		common_components.PadStatusIndicator(emoji.CheckMark.String(), 0),
 		instanceName)
 	logging.LOGGER.Info("instance destroyed", zap.String("instance name", instanceName))
 }

@@ -96,7 +96,7 @@ func stopProcess(instancePath, instanceName string) {
 		return
 	}
 
-	fmt.Printf("%s Successfully initiated instance shutdown for '%s'\n",
+	fmt.Printf("%s Successfully initiated instance shutdown for %s\n",
 		common_components.PadStatusIndicator(emoji.CheckMark.String(), 0),
 		instanceName)
 	logging.LOGGER.Info("successfully initiated instance shutdown", zap.String("instance name", instanceName))

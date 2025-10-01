@@ -19,7 +19,7 @@ var CreatingInstanceStructure = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Instance structure setup is in progress...",
+		Message: " Instance structure setup is in progress...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -30,7 +30,7 @@ var CreatingInstanceStructure = spinner_status.SpinnerStatuses{
 
 var SettingUpInstancePort = spinner_status.SpinnerStatuses{
 	SuccessMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Instance port was set",
+		Message: "Instance port was configured",
 		Status:  emoji.CheckMark,
 	},
 	FailureMessage: spinner_status.SpinnerStatusMessage{
@@ -38,7 +38,7 @@ var SettingUpInstancePort = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Setting up instance port...",
+		Message: " Setting up instance port...",
 		Status:  emoji.Emoji(""),
 	},
 }
@@ -53,7 +53,7 @@ var SettingUpProperties = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Instance properties setup is in progress...",
+		Message: " Instance properties setup is in progress...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -72,7 +72,7 @@ var SettingUpLicense = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Setting up instance license...",
+		Message: " Setting up instance license...",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -91,7 +91,7 @@ var CheckingIsInstanceAccessible = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Checking if the instance is accessible",
+		Message: " Checking if the instance is accessible",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -110,7 +110,26 @@ var StartingGraphDBInstance = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Started GraphDB instance...",
+		Message: " GraphDB is starting...",
+		Status:  emoji.Emoji(""),
+	},
+	CancelledMessage: spinner_status.SpinnerStatusMessage{
+		Message: cancelMessage,
+		Status:  cancelEmoji,
+	},
+}
+
+var CleaningUpGraphDBInstance = spinner_status.SpinnerStatuses{
+	SuccessMessage: spinner_status.SpinnerStatusMessage{
+		Message: "Successfully reverted",
+		Status:  emoji.CheckMark,
+	},
+	FailureMessage: spinner_status.SpinnerStatusMessage{
+		Message: "Failed to revert the creation of the instance",
+		Status:  emoji.CrossMark,
+	},
+	InProgressMessage: spinner_status.SpinnerStatusMessage{
+		Message: " Reverting in progress",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{

@@ -24,6 +24,20 @@ import (
 func createGraphDBInstance(ctx context.Context, ctxCancel context.CancelFunc) {
 	logging.LOGGER.Info("Creating GraphDB Instance...")
 
+	if c.Instance.Name == "" {
+		c.Instance.Name = generateRandomName()
+		fmt.Printf("%s Assigning random name - %s\n", common_components.PadStatusIndicator(emoji.Information.String(), 1),
+			c.Instance.Name)
+		logging.LOGGER.Info("No instance name provided, assigning random name")
+	}
+
+	if c.Instance.Version == "" {
+		c.Instance.Version = tc.Versions[0].Version
+		fmt.Printf("%s Utilizing version %s\n", common_components.PadStatusIndicator(emoji.Information.String(), 1),
+			c.Instance.Version)
+		logging.LOGGER.Info("No instance version provided, utilizing predefined one")
+	}
+
 	logging.LOGGER.Debug("Instance name: " + c.Instance.Name)
 	logging.LOGGER.Debug("Instance version: " + c.Instance.Version)
 	logging.LOGGER.Debug("Instance Stored license filename: " + c.Instance.StoredLicenseFilename)
@@ -46,10 +60,10 @@ func createGraphDBInstance(ctx context.Context, ctxCancel context.CancelFunc) {
 	createInstanceStructure(ctx, ctxCancel)
 	if c.Instance.IsActive {
 		ic.StartInstance(ctx, ctxCancel, &channels.Success, &channels.Failure)
-		ic.CheckProtocolEndpointAccessible(ctx, ctxCancel, c.Instance.Port, &channels.Success, &channels.Failure, p)
+		ic.CheckProtocolEndpointAccessible(ctx, ctxCancel, c.Instance.Port)
 
-		fmt.Printf("%s The instance can be accessed at: %s\n",
-			common_components.PadStatusIndicator(emoji.Star.String(), 1),
+		fmt.Printf("%s Instance can be accessed at: %s\n",
+			common_components.PadStatusIndicator(emoji.Star.String(), 0),
 			"http://localhost:"+c.Instance.Port)
 	}
 	storeMetadata()

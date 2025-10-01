@@ -29,7 +29,7 @@ func ConfigureProperties(instanceName string, p *tea.Program) {
 	}
 	defer propertiesFile.Close()
 
-	configureInstancePort(c.Instance.Port, p)
+	configureInstancePort(c.Instance.Port)
 
 	_, err = propertiesFile.WriteString(c.Instance.PropertyOverrides)
 	if err != nil {

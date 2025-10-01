@@ -4,7 +4,6 @@ package create
 import (
 	"context"
 	c "graphdbcli/internal/data_objects/graphdb_cluster"
-	"graphdbcli/internal/tool_configurations/statics"
 	"graphdbcli/internal/tui/common_components"
 
 	"github.com/spf13/cobra"
@@ -23,8 +22,8 @@ func Create(ctx context.Context, ctxCancel context.CancelFunc) *cobra.Command {
 		},
 	}
 
-	command.Flags().StringVarP(&c.Instance.Name, "name", "n", generateRandomName(), "name of the GraphDB cluster")
-	command.Flags().StringVarP(&c.Instance.Version, "version", "v", statics.Versions[0].Version, "version of the GraphDB cluster")
+	command.Flags().StringVarP(&c.Instance.Name, "name", "n", "", "name of the GraphDB cluster")
+	command.Flags().StringVarP(&c.Instance.Version, "version", "v", "", "version of the GraphDB cluster")
 	command.Flags().StringVarP(&c.Instance.StoredLicenseFilename, "license", "l", "", "stored license file name")
 	command.Flags().BoolVarP(&c.Instance.IsActive, "activate", "a", true, "activates the instance right after bootstrapping it")
 	command.Flags().StringVarP(&c.PropertyOverridesFilepath, "properties", "", "", "property overrides file")
