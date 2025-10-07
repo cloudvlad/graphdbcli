@@ -23,3 +23,6 @@ var InstancesDirName = "instances"
 
 // ResourcesDirName Directory for storing the fetched resources
 var ResourcesDirName = "resources"
+
+// WorkbenchDirName Directory for storing custom workbenches
+var WorkbenchDirName = "workbenches"

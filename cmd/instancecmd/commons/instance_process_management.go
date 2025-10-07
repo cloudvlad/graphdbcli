@@ -61,7 +61,7 @@ func startMainProcess(executablePath string) error {
 
 	// Start the process in the background
 	if err := cmd.Start(); err != nil {
-		fmt.Printf("%s  %s", common_components.PadStatusIndicator(emoji.CheckMark.String(), tc.NotTUIStatusIndicatorAdditionalPadding), "Error uncounted while starting the process")
+		fmt.Printf("%s Error uncounted while starting the process", common_components.PadStatusIndicator(emoji.CheckMark.String(), tc.NotTUIStatusIndicatorAdditionalPadding))
 		logging.LOGGER.Fatal("Error uncounted when starting the process",
 			zap.String("executablePath", executablePath),
 			zap.Error(err))
