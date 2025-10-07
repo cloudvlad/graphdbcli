@@ -2,11 +2,12 @@ package initialization
 
 import (
 	"fmt"
-	"go.uber.org/zap"
 	"graphdbcli/internal/tool_configurations/logging"
 	"graphdbcli/internal/tool_configurations/statics"
 	"os"
 	"path/filepath"
+
+	"go.uber.org/zap"
 )
 
 func GetUserHomeDirectory() string {
@@ -51,4 +52,12 @@ func GetResourcesDirectory() string {
 	resourcesDir := filepath.Join(gdbDir, statics.ResourcesDirName)
 
 	return resourcesDir
+}
+
+func GetWorkbenchDirectory() string {
+	homeDir := GetUserHomeDirectory()
+	gdbDir := filepath.Join(homeDir, statics.HomeDirSpaceName)
+	workbenchDir := filepath.Join(gdbDir, statics.WorkbenchDirName)
+
+	return workbenchDir
 }

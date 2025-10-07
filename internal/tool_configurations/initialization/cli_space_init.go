@@ -5,11 +5,12 @@
 package initialization
 
 import (
-	"go.uber.org/zap"
 	"graphdbcli/internal/tool_configurations/logging"
 	"graphdbcli/internal/tool_configurations/statics"
 	"os"
 	"path/filepath"
+
+	"go.uber.org/zap"
 )
 
 // InitializeCLIHomeDirectory Initializes all needed directories for the tool
@@ -21,8 +22,9 @@ func InitializeCLIHomeDirectory() {
 	licensesDir := filepath.Join(gdbDir, statics.LicensesDirName)
 	clustersDir := filepath.Join(gdbDir, statics.InstancesDirName)
 	resourcesDir := filepath.Join(gdbDir, statics.ResourcesDirName)
+	workbenchesDir := filepath.Join(gdbDir, statics.WorkbenchDirName)
 
-	directories := []string{gdbDir, distDir, logsDir, licensesDir, clustersDir, resourcesDir}
+	directories := []string{gdbDir, distDir, logsDir, licensesDir, clustersDir, resourcesDir, workbenchesDir}
 	for _, directory := range directories {
 		if _, err := os.Stat(directory); os.IsNotExist(err) {
 			err = os.Mkdir(directory, 0750)

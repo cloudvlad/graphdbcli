@@ -2,7 +2,7 @@ package commons
 
 import (
 	"fmt"
-	"graphdbcli/internal/data_objects/intance_metadata"
+	"graphdbcli/internal/data_objects/instance_metadata"
 	"graphdbcli/internal/tool_configurations/initialization"
 	"os"
 	"path"
@@ -10,7 +10,7 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-func CollectInstancesInformation() []intance_metadata.InstanceMetadata {
+func CollectInstancesInformation() []instance_metadata.InstanceMetadata {
 	instancesPath := initialization.GetClustersDirectory()
 	instances, err := os.ReadDir(instancesPath)
 	if err != nil {
@@ -18,7 +18,7 @@ func CollectInstancesInformation() []intance_metadata.InstanceMetadata {
 		os.Exit(1)
 	}
 
-	var instanceMetadata []intance_metadata.InstanceMetadata
+	var instanceMetadata []instance_metadata.InstanceMetadata
 
 	for _, instance := range instances {
 		instancePath := path.Join(instancesPath, instance.Name(), "metadata.yaml")
@@ -31,14 +31,14 @@ func CollectInstancesInformation() []intance_metadata.InstanceMetadata {
 	return instanceMetadata
 }
 
-func GetInstanceInfo(metadataFilePath string) *intance_metadata.InstanceMetadata {
+func GetInstanceInfo(metadataFilePath string) *instance_metadata.InstanceMetadata {
 	dataBytes, err := os.ReadFile(metadataFilePath)
 	if err != nil {
 		fmt.Println("Error reading instance metadata:", err)
 		return nil
 	}
 
-	var meta intance_metadata.InstanceMetadata
+	var meta instance_metadata.InstanceMetadata
 	err = yaml.Unmarshal(dataBytes, &meta)
 	if err != nil {
 		fmt.Println("Error unmarshaling YAML:", err)

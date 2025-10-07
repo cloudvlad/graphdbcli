@@ -1,4 +1,4 @@
-package intance_metadata
+package instance_metadata
 
 type InstanceMetadata struct {
 	Name        string

@@ -6,7 +6,7 @@ import (
 	ic "graphdbcli/cmd/instancecmd/commons"
 	channels "graphdbcli/internal/channels/commons"
 	c "graphdbcli/internal/data_objects/graphdb_cluster"
-	"graphdbcli/internal/data_objects/intance_metadata"
+	"graphdbcli/internal/data_objects/instance_metadata"
 	"graphdbcli/internal/tool_configurations/initialization"
 	"graphdbcli/internal/tool_configurations/logging"
 	tc "graphdbcli/internal/tool_configurations/statics"
@@ -73,11 +73,11 @@ func storeMetadata() {
 	instancePath := path.Join(initialization.GetClustersDirectory(), c.Instance.Name)
 	metadataFile := path.Join(instancePath, "metadata.yaml")
 
-	instanceMetadata := intance_metadata.InstanceMetadata{}
+	instanceMetadata := instance_metadata.InstanceMetadata{}
 
 	instanceMetadata.Name = c.Instance.Name
 	if c.Instance.IsActive {
-		instanceMetadata.Status = "Active"
+		instanceMetadata.Status = "Status"
 	} else {
 		instanceMetadata.Status = "Inactive"
 	}

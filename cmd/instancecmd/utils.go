@@ -2,12 +2,12 @@ package instancecmd
 
 import (
 	"fmt"
+	"graphdbcli/internal/data_objects/instance_metadata"
 	"os"
 	"path"
 	"strconv"
 	"syscall"
-
-	"graphdbcli/internal/data_objects/intance_metadata"
+	
 	"graphdbcli/internal/tool_configurations/initialization"
 
 	"gopkg.in/yaml.v3"
@@ -35,7 +35,7 @@ func updateInstancesMetadata() {
 		if err != nil {
 			continue
 		}
-		var meta intance_metadata.InstanceMetadata
+		var meta instance_metadata.InstanceMetadata
 		if err := yaml.Unmarshal(metaBytes, &meta); err != nil {
 			continue
 		}

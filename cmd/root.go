@@ -11,6 +11,7 @@ import (
 	"graphdbcli/cmd/repositorycmd"
 	"graphdbcli/cmd/resourcecmd"
 	"graphdbcli/cmd/versioncmd"
+	"graphdbcli/cmd/workbenchcmd"
 
 	"github.com/spf13/cobra"
 )
@@ -37,6 +38,7 @@ func Execute() error {
 	rootCmd.AddCommand(backupcmd.Backup(ctx, cancel))
 	rootCmd.AddCommand(resourcecmd.Resource(ctx))
 	rootCmd.AddCommand(repositorycmd.Repository(ctx))
+	rootCmd.AddCommand(workbenchcmd.Workbench(ctx, cancel))
 
 	return rootCmd.ExecuteContext(ctx)
 }
