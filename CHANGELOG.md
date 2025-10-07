@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/cloudvlad/graphdbcli/compare/v1.0.1...v1.1.0) (2025-10-07)
+
+
+### Features
+
+* **workbenchcmd:** add external workbench management module ([cce06b7](https://github.com/cloudvlad/graphdbcli/commit/cce06b7cf19ff20116e75e9b864106d491074ea9))
+
 ## [1.0.1](https://github.com/cloudvlad/graphdbcli/compare/v1.0.0...v1.0.1) (2025-10-01)
 
 
