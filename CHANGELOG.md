@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/cloudvlad/graphdbcli/compare/v1.1.0...v1.2.0) (2025-10-09)
+
+
+### Features
+
+* **versioncmd_install:** change the distribution file source ([cbbd233](https://github.com/cloudvlad/graphdbcli/commit/cbbd2338c21ef5a4b7d640c3d2d8835701c59493))
+
 # [1.1.0](https://github.com/cloudvlad/graphdbcli/compare/v1.0.1...v1.1.0) (2025-10-07)
 
 
