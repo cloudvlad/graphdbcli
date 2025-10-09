@@ -119,7 +119,7 @@ func (pw *progressWriter) Write(p []byte) (int, error) {
 	return len(p), nil
 }
 
-func DownloadWithProgressBar(version, url, output string) {
+func DownloadWithProgressBar(version, url, outputFile string) {
 	resp, err := http.Get(url)
 	if err != nil {
 		logging.LOGGER.Error("error downloading version", zap.String("url", url), zap.Error(err))
@@ -139,7 +139,7 @@ func DownloadWithProgressBar(version, url, output string) {
 		os.Exit(1)
 	}
 
-	file, err := os.Create(output)
+	file, err := os.Create(outputFile)
 	if err != nil {
 		fmt.Println("could not create file:", err)
 		os.Exit(1)

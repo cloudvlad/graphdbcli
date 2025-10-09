@@ -27,7 +27,7 @@ var isIntegrityCheckNeeded = false
 // rules for Semantic versioning.
 func installSelectedVersion(selectedVersion string) {
 	distDir := initialization.GetDistDirectory()
-	zipFile := filepath.Join(distDir, fmt.Sprintf("%s.zip", selectedVersion))
+	zipFile := filepath.Join(distDir, fmt.Sprintf("graphdb-%s.zip", selectedVersion))
 
 	if _, err := os.Stat(zipFile); os.IsNotExist(err) {
 		url := fmt.Sprintf("https://maven.ontotext.com/repository/owlim-releases/com/ontotext/graphdb/graphdb/%s/graphdb-%s-dist.zip", selectedVersion, selectedVersion)
