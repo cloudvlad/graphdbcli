@@ -2,8 +2,9 @@ package versiontui
 
 import (
 	"fmt"
+	"graphdbcli/internal/tool_configurations/logging"
+	"graphdbcli/internal/tui/common_components"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -12,6 +13,8 @@ import (
 	"github.com/charmbracelet/bubbles/progress"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/enescakir/emoji"
+	"go.uber.org/zap"
 )
 
 var helpStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#626262")).Render
@@ -116,24 +119,18 @@ func (pw *progressWriter) Write(p []byte) (int, error) {
 	return len(p), nil
 }
 
-func getResponse(url string) (*http.Response, error) {
-	resp, err := http.Get(url) // nolint:gosec
-	if err != nil {
-		log.Fatal(err)
-	}
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("receiving status of %d for url: %s", resp.StatusCode, url)
-	}
-	return resp, nil
-}
-
 func DownloadWithProgressBar(version, url, output string) {
-	resp, err := getResponse(url)
+	resp, err := http.Get(url)
 	if err != nil {
-		fmt.Println("could not get response", err)
-		os.Exit(1)
+		logging.LOGGER.Error("error downloading version", zap.String("url", url), zap.Error(err))
 	}
-	defer resp.Body.Close() // nolint:errcheck
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode == 404 {
+		fmt.Printf("%s Specified version not found\n", common_components.PadStatusIndicator(emoji.StopSign.String(), 0))
+		logging.LOGGER.Fatal("Version not found", zap.String("url", url))
+	}
 
 	// Don't add TUI if the header doesn't include content size
 	// it's impossible see progress without total

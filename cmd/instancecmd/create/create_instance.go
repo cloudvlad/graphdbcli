@@ -51,7 +51,7 @@ func createGraphDBInstance(ctx context.Context, ctxCancel context.CancelFunc) {
 	}
 
 	if IsClusterPresent() {
-		fmt.Printf("%s The cluster %s already exists", common_components.PadStatusIndicator(emoji.StopSign.String(), tc.NotTUIStatusIndicatorAdditionalPadding))
+		fmt.Printf("%s The cluster %s already exists", common_components.PadStatusIndicator(emoji.StopSign.String(), tc.NotTUIStatusIndicatorAdditionalPadding), c.Instance.Name)
 		logging.LOGGER.Fatal("A cluster with the used name already exists",
 			zap.String("name", c.Instance.Name))
 	}
