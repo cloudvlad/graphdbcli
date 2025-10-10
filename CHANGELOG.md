@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/cloudvlad/graphdbcli/compare/v1.2.0...v1.2.1) (2025-10-10)
+
+
+### Bug Fixes
+
+* **versioncmd_install:** fix unusable distribution file format ([e4d29f1](https://github.com/cloudvlad/graphdbcli/commit/e4d29f1c4e1a74d63fc6ba4f2ed62219976a62ca))
+
 # [1.2.0](https://github.com/cloudvlad/graphdbcli/compare/v1.1.0...v1.2.0) (2025-10-09)
 
 
