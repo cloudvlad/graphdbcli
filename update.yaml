@@ -1,0 +1,15 @@
+version: 11.1.1
+appVersion: 0.15.3
+documentation:
+  - CHANGELOG.md
+  - README.md
+  - README.md.gotmpl
+  - examples/aws/backup/README.md
+  - examples/azure/backup/README.md
+  - examples/gcp/backup/README.md
+  - examples/configuring/README.md
+  - examples/grpc-security/README.md
+  - examples/plugins/README.md
+  - examples/tomcat-security/README.md
+  - examples/virtualization/README.md
+  - values.yaml
