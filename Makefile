@@ -43,7 +43,7 @@ install:
 	fi
 
 build:
-	go build -o $(BINARY_NAME)
+	go build -ldflags "-X graphdbcli/cmd.Version=$(shell date '+%T')" -o $(BINARY_NAME);
 
 fmt:
 	go fmt ./...

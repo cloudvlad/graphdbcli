@@ -12,12 +12,11 @@ import (
 	"graphdbcli/cmd/resourcecmd"
 	"graphdbcli/cmd/versioncmd"
 	"graphdbcli/cmd/workbenchcmd"
-	"time"
 
 	"github.com/spf13/cobra"
 )
 
-var Version = time.Now().Format(time.TimeOnly)
+var Version = "x.y.z"
 
 // Execute is the command line applications entry function
 func Execute() error {
