@@ -13,7 +13,7 @@ import (
 )
 
 func CollectInstancesInformation() []instance_metadata.InstanceMetadata {
-	instancesPath := initialization.GetClustersDirectory()
+	instancesPath := initialization.GetWorkbenchesDirectory()
 	instances, err := os.ReadDir(instancesPath)
 	if err != nil {
 		fmt.Printf("Error occured while reading instances directory\n")

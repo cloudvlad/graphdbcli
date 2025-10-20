@@ -6,6 +6,7 @@ import (
 	"graphdbcli/cmd/workbenchcmd/add"
 	"graphdbcli/cmd/workbenchcmd/config"
 	"graphdbcli/cmd/workbenchcmd/purge"
+	"graphdbcli/cmd/workbenchcmd/show"
 	"graphdbcli/cmd/workbenchcmd/start"
 	"graphdbcli/cmd/workbenchcmd/stop"
 
@@ -29,11 +30,14 @@ func Workbench(ctx context.Context, ctxCancel context.CancelFunc) *cobra.Command
 		Hidden: true,
 	}
 
+	updateWorkbenchesMetadata()
+
 	command.AddCommand(config.Command(ctx))
-	command.AddCommand(add.Command(ctx))
+	command.AddCommand(add.Command())
 	command.AddCommand(purge.Command(ctx))
 	command.AddCommand(start.Command(ctx, ctxCancel))
 	command.AddCommand(stop.Command(ctx, ctxCancel))
+	command.AddCommand(show.Command())
 
 	return command
 }

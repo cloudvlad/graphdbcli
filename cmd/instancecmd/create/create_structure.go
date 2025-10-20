@@ -24,7 +24,7 @@ var p *tea.Program
 // - Configures the properties
 // - Sets a license
 func createInstanceStructure(ctx context.Context, ctxCancel context.CancelFunc) {
-	instancePath := path.Join(ini.GetClustersDirectory(), c.Instance.Name)
+	instancePath := path.Join(ini.GetWorkbenchesDirectory(), c.Instance.Name)
 	zipfileName := "graphdb-" + c.Instance.Version + ".zip"
 	zipFilePath := path.Join(ini.GetDistDirectory(), zipfileName)
 
@@ -47,7 +47,7 @@ func createInstanceStructure(ctx context.Context, ctxCancel context.CancelFunc) 
 		logging.LOGGER.Warn("no license file specified")
 		return
 	}
-	
+
 	p = tea.NewProgram(common_components.InitialModel(ctx, ctxCancel, sp.SettingUpLicense, &cc.Success, &cc.Failure))
 	go func() {
 		p.Run()

@@ -16,7 +16,7 @@ import (
 )
 
 func ConfigureProperties(instanceName string, p *tea.Program) {
-	segments := append([]string{ini.GetClustersDirectory(), instanceName}, tc.DefaultConfPropertiesPath...)
+	segments := append([]string{ini.GetWorkbenchesDirectory(), instanceName}, tc.DefaultConfPropertiesPath...)
 	propertiesFullPath := path.Join(segments...)
 
 	logging.LOGGER.Debug("Configuring properties for GraphDB instance", zap.String("propertiesFile", propertiesFullPath))

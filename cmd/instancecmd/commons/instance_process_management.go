@@ -42,7 +42,7 @@ func StartInstance(ctx context.Context, ctxCancel context.CancelFunc, successCha
 	logging.LOGGER.Info("Starting cluster",
 		zap.String("cluster name", c.Instance.Name))
 
-	segments := append([]string{ini.GetClustersDirectory(), c.Instance.Name}, tc.DefaultExecutablePath...)
+	segments := append([]string{ini.GetWorkbenchesDirectory(), c.Instance.Name}, tc.DefaultExecutablePath...)
 	executablePath := path.Join(segments...)
 
 	logging.LOGGER.Debug("Starting the GraphDB instance...",

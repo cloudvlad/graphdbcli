@@ -30,12 +30,12 @@ func GetDistDirectory() string {
 	return distDir
 }
 
-func GetClustersDirectory() string {
+func GetWorkbenchesDirectory() string {
 	homeDir := GetUserHomeDirectory()
 	gdbDir := filepath.Join(homeDir, statics.HomeDirSpaceName)
-	clustersDir := filepath.Join(gdbDir, statics.InstancesDirName)
+	workbenchesDir := filepath.Join(gdbDir, statics.WorkbenchDirName)
 
-	return clustersDir
+	return workbenchesDir
 }
 
 func GetLicensesDirectory() string {

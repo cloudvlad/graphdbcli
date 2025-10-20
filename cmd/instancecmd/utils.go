@@ -7,7 +7,7 @@ import (
 	"path"
 	"strconv"
 	"syscall"
-	
+
 	"graphdbcli/internal/tool_configurations/initialization"
 
 	"gopkg.in/yaml.v3"
@@ -15,7 +15,7 @@ import (
 
 // updateInstancesMetadata is used to update the metadata and the process id file for every instance
 func updateInstancesMetadata() {
-	instancesPath := initialization.GetClustersDirectory()
+	instancesPath := initialization.GetWorkbenchesDirectory()
 	instances, err := os.ReadDir(instancesPath)
 	if err != nil {
 		fmt.Println("Error reading clusters directory:", err)
