@@ -21,6 +21,18 @@ var p *tea.Program
 func startCustomWorkbench(workbenchName string, ctx context.Context, ctxCancel context.CancelFunc) {
 	workbenchDir := filepath.Join(initialization.GetWorkbenchDirectory(), workbenchName)
 
+	p = tea.NewProgram(common_components.InitialModel(ctx, ctxCancel, sp.CheckingPrerequisites, &cc.Success, &cc.Failure))
+	go func() {
+		p.Run()
+	}()
+
+	if !PrerequisitesAreFulfilled() {
+		cc.HandleEvent(&cc.Failure, p)
+		return
+	}
+
+	cc.HandleEvent(&cc.Success, p)
+
 	p = tea.NewProgram(common_components.InitialModel(ctx, ctxCancel, sp.InitializingWorkbenchStatuses, &cc.Success, &cc.Failure))
 	go func() {
 		p.Run()
