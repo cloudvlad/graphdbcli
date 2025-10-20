@@ -26,7 +26,7 @@ func destroy(context context.Context, ctxCancel context.CancelFunc, instanceName
 		return
 	}
 
-	instancesPath := initialization.GetClustersDirectory()
+	instancesPath := initialization.GetWorkbenchesDirectory()
 	instances, err := os.ReadDir(instancesPath)
 	if err != nil {
 		fmt.Println("Error reading clusters directory:", err)
@@ -47,7 +47,7 @@ func destroy(context context.Context, ctxCancel context.CancelFunc, instanceName
 }
 
 func destroyInstance(instanceName string) {
-	instancePath := path.Join(ini.GetClustersDirectory(), instanceName)
+	instancePath := path.Join(ini.GetWorkbenchesDirectory(), instanceName)
 	if !isInstancePresent(instancePath) {
 		fmt.Printf("%s Instance %s not found. Exiting... \n",
 			common_components.PadStatusIndicator(string(emoji.FastForwardButton), tc.NotTUIStatusIndicatorAdditionalPadding), instanceName)
