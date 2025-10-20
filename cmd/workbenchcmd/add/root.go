@@ -2,13 +2,12 @@
 package add
 
 import (
-	"context"
 	"graphdbcli/internal/tui/common_components"
 
 	"github.com/spf13/cobra"
 )
 
-func Command(ctx context.Context) *cobra.Command {
+func Command() *cobra.Command {
 	command := &cobra.Command{
 		Use:     "add <workbench-name> <path-to-source>",
 		Short:   shortDescription,
@@ -20,7 +19,7 @@ func Command(ctx context.Context) *cobra.Command {
 				return cmd.Help()
 			}
 
-			AddCustomWorkbench(args[0], args[1])
+			addCustomWorkbench(args[0], args[1])
 
 			return nil
 		},
