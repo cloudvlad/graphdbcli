@@ -23,7 +23,7 @@ func isPortOpen(port string) bool {
 }
 
 func IsClusterPresent() bool {
-	fullClusterPath := path.Join(initialization.GetClustersDirectory(), c.Instance.Name)
+	fullClusterPath := path.Join(initialization.GetWorkbenchesDirectory(), c.Instance.Name)
 
 	_, err := os.Stat(fullClusterPath)
 	if err == nil {
