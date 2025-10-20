@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/cloudvlad/graphdbcli/compare/v1.2.2...v1.2.3) (2025-10-20)
+
+
+### Bug Fixes
+
+* **workbenchcmd:** fix missing documentation ([8f17e7d](https://github.com/cloudvlad/graphdbcli/commit/8f17e7dd84f1a0dc845a0fc892c9246236f558e6))
+
 ## [1.2.2](https://github.com/cloudvlad/graphdbcli/compare/v1.2.1...v1.2.2) (2025-10-20)
 
 
