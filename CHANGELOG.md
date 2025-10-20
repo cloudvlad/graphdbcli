@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/cloudvlad/graphdbcli/compare/v1.2.1...v1.2.2) (2025-10-20)
+
+
+### Bug Fixes
+
+* **workbenchcmd:** add npm handling ([661a7d1](https://github.com/cloudvlad/graphdbcli/commit/661a7d1bedadc896664149131a0945d8a85686be))
+
 ## [1.2.1](https://github.com/cloudvlad/graphdbcli/compare/v1.2.0...v1.2.1) (2025-10-10)
 
 
