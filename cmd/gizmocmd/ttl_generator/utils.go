@@ -6,13 +6,13 @@ import (
 	"path/filepath"
 )
 
-var numberOfStatementsPerFile uint
+var numberOfEntitiesPerFile uint
 var numberOfFiles uint
 var numberOfTripletsPerEntity uint
 
 // generateTTLFiles creates TTL files and writes them to separate files according to the properties.
 func generateTTLFiles(outputDir string) error {
-	if numberOfFiles == 0 || numberOfStatementsPerFile == 0 || numberOfTripletsPerEntity == 0 {
+	if numberOfFiles == 0 || numberOfEntitiesPerFile == 0 || numberOfTripletsPerEntity == 0 {
 		return fmt.Errorf("All properties must be set and greater than zero")
 	}
 	err := os.MkdirAll(outputDir, 0755)
@@ -27,8 +27,8 @@ func generateTTLFiles(outputDir string) error {
 			return err
 		}
 		defer f.Close()
-		for j := uint(0); j < numberOfStatementsPerFile; j++ {
-			entityID := i*numberOfStatementsPerFile + j + 1
+		for j := uint(0); j < numberOfEntitiesPerFile; j++ {
+			entityID := i*numberOfEntitiesPerFile + j + 1
 			triplets := generateEntity(entityID)
 			for _, t := range triplets {
 				_, err := f.WriteString(t + "\n")
