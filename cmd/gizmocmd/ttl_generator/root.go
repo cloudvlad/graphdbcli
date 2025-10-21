@@ -22,8 +22,8 @@ func Command() *cobra.Command {
 		},
 	}
 
+	command.Flags().UintVarP(&numberOfEntitiesPerFile, "numberOfEntitiesPerFile", "e", 1, "number of entities per file")
 	command.Flags().UintVarP(&numberOfFiles, "numberOfFiles", "f", 1, "number of files to generate")
-	command.Flags().UintVarP(&numberOfStatementsPerFile, "numberOfStatementsPerFile", "g", 1, "number of statements per file")
 	command.Flags().UintVarP(&numberOfTripletsPerEntity, "numberOfTripletsPerEntity", "t", 1, "number of triplets per entity")
 	return command
 }
