@@ -8,6 +8,7 @@ import (
 	"graphdbcli/cmd/gizmocmd"
 	"graphdbcli/cmd/instancecmd"
 	"graphdbcli/cmd/licensecmd"
+	"graphdbcli/cmd/rdf4j"
 	"graphdbcli/cmd/repositorycmd"
 	"graphdbcli/cmd/resourcecmd"
 	"graphdbcli/cmd/versioncmd"
@@ -39,6 +40,7 @@ func Execute() error {
 	rootCmd.AddCommand(resourcecmd.Resource(ctx))
 	rootCmd.AddCommand(repositorycmd.Repository(ctx))
 	rootCmd.AddCommand(workbenchcmd.Workbench(ctx, cancel))
+	rootCmd.AddCommand(rdf4j.Rdf4J(ctx, cancel))
 
 	return rootCmd.ExecuteContext(ctx)
 }
