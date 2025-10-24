@@ -1,3 +1,11 @@
+## [1.3.1](https://github.com/cloudvlad/graphdbcli/compare/v1.3.0...v1.3.1) (2025-10-24)
+
+
+### Bug Fixes
+
+* **versioncmd:** fix integrity checks for distribution files ([a73acbd](https://github.com/cloudvlad/graphdbcli/commit/a73acbd125d598ee3faf741e1cc435b97f99dd1b))
+* **versioncmd:** fix missing releases ([bde657d](https://github.com/cloudvlad/graphdbcli/commit/bde657d0ce2abc181e7b7fe4cbb58d61ee1d1766))
+
 # [1.3.0](https://github.com/cloudvlad/graphdbcli/compare/v1.2.3...v1.3.0) (2025-10-24)
 
 
