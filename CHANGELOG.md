@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/cloudvlad/graphdbcli/compare/v1.2.3...v1.3.0) (2025-10-24)
+
+
+### Features
+
+* **rdf4jcmd:** add RDF4J related commands ([7dce796](https://github.com/cloudvlad/graphdbcli/commit/7dce796f5437223d7b6b096b3f258545cd3ba01d))
+
 ## [1.2.3](https://github.com/cloudvlad/graphdbcli/compare/v1.2.2...v1.2.3) (2025-10-20)
 
 
