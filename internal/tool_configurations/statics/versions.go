@@ -14,6 +14,16 @@ type Version struct {
 // Versions contains all released versions.
 var Versions = []Version{
 	{
+		Version:     "11.1.2",
+		ReleaseDate: "15-10-2025",
+		Sha256sum:   "36a92fff05328051c39f1b5cdebc5762c75ced36f0a29ea271fc0fdfa743c0c4",
+	},
+	{
+		Version:     "11.1.1",
+		ReleaseDate: "17-09-2025",
+		Sha256sum:   "dae1e7118dadd2207ce42f178d24063b9f4fd59ac1891ea2cf1b7e33993fbd7b",
+	},
+	{
 		Version:     "11.1.0",
 		ReleaseDate: "21-08-2025",
 		Sha256sum:   "29fbf76624b3bdfa9562c61987fe54110e4af53d628a029c8c543931cd7c2e5a",
@@ -34,14 +44,24 @@ var Versions = []Version{
 		Sha256sum:   "408106abc4d1f75db6c854940b671d3caf760624812bd8a045c1d33748f5090d",
 	},
 	{
-		Version:     "10.8.8",
-		ReleaseDate: "05-06-2025",
-		Sha256sum:   "b1bc91fbe01128569d9e680c0eec62d9a67baf704edf1554f578a1debd6ae2b7",
+		Version:     "10.8.11",
+		ReleaseDate: "24-09-2025",
+		Sha256sum:   "bc487769d220024ef8f4fc8c54dec00704f0ee181ceaaa683f6902157bc07d5b",
+	},
+	{
+		Version:     "10.8.10",
+		ReleaseDate: "21-08-2025",
+		Sha256sum:   "02df04cf134855cae9e4b927e7d2d5b6df8760ea15f7cb61b9122409496dd518",
 	},
 	{
 		Version:     "10.8.9",
 		ReleaseDate: "14-07-2025",
 		Sha256sum:   "ef36698f1939a4ed0fdc8a74d30240ca946c5996bad8c59ec7c4eba1df635423",
+	},
+	{
+		Version:     "10.8.8",
+		ReleaseDate: "05-06-2025",
+		Sha256sum:   "b1bc91fbe01128569d9e680c0eec62d9a67baf704edf1554f578a1debd6ae2b7",
 	},
 	{
 		Version:     "10.8.7",

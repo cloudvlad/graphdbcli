@@ -21,8 +21,6 @@ import (
 	"go.uber.org/zap"
 )
 
-var isIntegrityCheckNeeded = false
-
 // installSelectedVersion install the provided version, that must follow the
 // rules for Semantic versioning.
 func installSelectedVersion(selectedVersion string) {
@@ -55,7 +53,7 @@ func installSelectedVersion(selectedVersion string) {
 // with the one cacluated after downloading it
 func integrityCheck(version statics.Version) {
 	distDir := initialization.GetDistDirectory()
-	zipFile := filepath.Join(distDir, fmt.Sprintf("%s.zip", version.Version))
+	zipFile := filepath.Join(distDir, fmt.Sprintf("graphdb-%s.zip", version.Version))
 
 	file, err := os.Open(zipFile)
 	if err != nil {

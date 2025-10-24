@@ -14,6 +14,8 @@ import (
 	"go.uber.org/zap"
 )
 
+var isIntegrityCheckNeeded bool
+
 func Command(ctx context.Context) *cobra.Command {
 	var command = &cobra.Command{
 		Use:     "install",
