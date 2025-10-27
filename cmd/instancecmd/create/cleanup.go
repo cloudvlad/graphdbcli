@@ -11,7 +11,7 @@ import (
 )
 
 func CleanUp(instanceName string) error {
-	instancePath := path.Join(initialization.GetClustersDirectory(), instanceName)
+	instancePath := path.Join(initialization.GetWorkbenchesDirectory(), instanceName)
 	fmt.Printf("%s Cleaning up instance after failure\n", common_components.PadStatusIndicator(emoji.Broom.String(), 0))
 
 	return os.RemoveAll(instancePath)

@@ -97,7 +97,7 @@ func startCustomWorkbench(workbenchName string, ctx context.Context, ctxCancel c
 	}
 
 	// Persist the PID so other tooling can manage this instance
-	pidFilePath := filepath.Join(workbenchDir, ".instance_pid")
+	pidFilePath := filepath.Join(workbenchDir, ".workbench_pid")
 	pidStr := strconv.Itoa(cmd.Process.Pid)
 	if werr := os.WriteFile(pidFilePath, []byte(pidStr), 0644); werr != nil {
 		fmt.Printf("failed to write pid file: %v\n", werr)

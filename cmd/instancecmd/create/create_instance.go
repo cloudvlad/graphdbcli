@@ -70,7 +70,7 @@ func createGraphDBInstance(ctx context.Context, ctxCancel context.CancelFunc) {
 }
 
 func storeMetadata() {
-	instancePath := path.Join(initialization.GetClustersDirectory(), c.Instance.Name)
+	instancePath := path.Join(initialization.GetWorkbenchesDirectory(), c.Instance.Name)
 	metadataFile := path.Join(instancePath, "metadata.yaml")
 
 	instanceMetadata := instance_metadata.InstanceMetadata{}
