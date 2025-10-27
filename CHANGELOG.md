@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/cloudvlad/graphdbcli/compare/v1.3.1...v1.3.2) (2025-10-27)
+
+
+### Bug Fixes
+
+* **gizmocmd:** fix flag name not reflecting its real usage ([8603874](https://github.com/cloudvlad/graphdbcli/commit/8603874cd77d945530f1fd443a8312bf192afb10))
+
 ## [1.3.1](https://github.com/cloudvlad/graphdbcli/compare/v1.3.0...v1.3.1) (2025-10-24)
 
 
