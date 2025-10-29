@@ -1,4 +1,4 @@
-package remove
+package delete
 
 import (
 	"context"
@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func Remove(ctx context.Context) *cobra.Command {
+func Delete(ctx context.Context) *cobra.Command {
 	var command = &cobra.Command{
 		Use:     "remove",
 		Short:   "show stored licenses",

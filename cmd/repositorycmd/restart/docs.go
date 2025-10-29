@@ -1,4 +1,4 @@
-package show
+package restart
 
 var shortDescription = `Shows the local or remote repositories`
 

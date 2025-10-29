@@ -1,18 +1,19 @@
-package show
+package health
 
 import (
 	"context"
+	"graphdbcli/internal/tui/common_components"
 
 	"github.com/spf13/cobra"
 )
 
-func Show(ctx context.Context) *cobra.Command {
+func Health(ctx context.Context) *cobra.Command {
 	var command = &cobra.Command{
-		Use:     "show",
+		Use:     "health <repository-name>",
 		Short:   shortDescription,
 		Long:    longDescription,
-		Example: examples,
-		Aliases: []string{"s"},
+		Example: common_components.PadExamples(examples),
+		Aliases: []string{"i", "inf"},
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return nil
 		},

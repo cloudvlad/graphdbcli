@@ -2,8 +2,8 @@ package add_stmnts
 
 import (
 	"context"
+	dlo "graphdbcli/internal/flags/rdf4j"
 	"graphdbcli/internal/tui/common_components"
-	dlo "graphdbcli/internal/tui/rdf4j"
 
 	"github.com/spf13/cobra"
 )
