@@ -5,9 +5,9 @@ import (
 	"context"
 	"fmt"
 	cc "graphdbcli/internal/channels/commons"
+	pf "graphdbcli/internal/flags/rdf4jcmd"
 	"graphdbcli/internal/tool_configurations/logging"
 	"graphdbcli/internal/tui/common_components"
-	dlo "graphdbcli/internal/tui/rdf4j"
 	sp "graphdbcli/internal/tui/rdf4j/sparql/upload/spinner"
 	"io"
 	"net/http"
@@ -28,7 +28,7 @@ func uploadData(ctx context.Context, ctxCancel context.CancelFunc, datafilePath,
 		queryParams.Add("baseURI", baseUri)
 	}
 
-	requestUrl := fmt.Sprintf("%s/repositories/%s/statements?%s", dlo.GraphdbAddress, dlo.Repository, queryParams.Encode())
+	requestUrl := fmt.Sprintf("%s/repositories/%s/statements?%s", pf.GraphdbAddress, pf.Repository, queryParams.Encode())
 
 	logging.LOGGER.Debug("request URL", zap.String("url", requestUrl))
 
@@ -58,9 +58,9 @@ func uploadData(ctx context.Context, ctxCancel context.CancelFunc, datafilePath,
 		cc.HandleEvent(&cc.Failure, p)
 		logging.LOGGER.Fatal("failed to create HTTP request", zap.Error(err))
 	}
-	req.Header.Set("Content-Type", dlo.RdfFormat)
+	req.Header.Set("Content-Type", pf.RdfFormat)
 
-	logging.LOGGER.Debug("rdf format", zap.String("rdf_format", dlo.RdfFormat))
+	logging.LOGGER.Debug("rdf format", zap.String("rdf_format", pf.RdfFormat))
 
 	cc.HandleEvent(&cc.Success, p)
 	p = tea.NewProgram(common_components.InitialModel(ctx, ctxCancel, sp.SendHTTPRequest, &cc.Success, &cc.Failure))
