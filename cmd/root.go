@@ -38,7 +38,7 @@ func Execute() error {
 	rootCmd.AddCommand(gizmocmd.Gizmo())
 	rootCmd.AddCommand(backupcmd.Command(ctx, cancel))
 	rootCmd.AddCommand(resourcecmd.Resource(ctx))
-	rootCmd.AddCommand(repositorycmd.Repository(ctx))
+	rootCmd.AddCommand(repositorycmd.Repository(ctx, cancel))
 	rootCmd.AddCommand(workbenchcmd.Workbench(ctx, cancel))
 	rootCmd.AddCommand(rdf4j.Rdf4J(ctx, cancel))
 
