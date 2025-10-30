@@ -10,6 +10,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var (
+	s3ServiceName  = ""
+	s3BucketName   = ""
+	s3Region       = ""
+	accessKeyId    = ""
+	accessKeyToken = ""
+)
+
 func Command(ctx context.Context, ctxCancel context.CancelFunc) *cobra.Command {
 	command := &cobra.Command{
 		Use:     "s3 --bucket <bucket name>",
@@ -20,10 +28,12 @@ func Command(ctx context.Context, ctxCancel context.CancelFunc) *cobra.Command {
 			authentication.SetupS3Authentication()
 
 			CreateS3Backup(
-				backup_conf.Configurations.GraphDBLocation,
-				backup_conf.Configurations.GetRepositories(),
-				backup_conf.Configurations.BackupSystemData,
-				backup_conf.Configurations.BackupName,
+				backup_conf.Configurations,
+				s3ServiceName,
+				s3BucketName,
+				s3Region,
+				accessKeyId,
+				accessKeyToken,
 				ctx,
 				ctxCancel,
 			)
