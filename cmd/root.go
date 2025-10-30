@@ -36,7 +36,7 @@ func Execute() error {
 	rootCmd.AddCommand(licensecmd.License(ctx))
 	rootCmd.AddCommand(instancecmd.Cluster(ctx, cancel))
 	rootCmd.AddCommand(gizmocmd.Gizmo())
-	rootCmd.AddCommand(backupcmd.Backup(ctx, cancel))
+	rootCmd.AddCommand(backupcmd.Command(ctx, cancel))
 	rootCmd.AddCommand(resourcecmd.Resource(ctx))
 	rootCmd.AddCommand(repositorycmd.Repository(ctx))
 	rootCmd.AddCommand(workbenchcmd.Workbench(ctx, cancel))
