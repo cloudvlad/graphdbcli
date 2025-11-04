@@ -3,7 +3,8 @@ package create
 
 import (
 	"context"
-	s3cmd "graphdbcli/cmd/backupcmd/create/s3"
+	local "graphdbcli/cmd/backupcmd/create/local"
+	s3 "graphdbcli/cmd/backupcmd/create/s3"
 	"graphdbcli/internal/tui/common_components"
 
 	"github.com/spf13/cobra"
@@ -21,7 +22,8 @@ func Command(ctx context.Context, ctxCancel context.CancelFunc) *cobra.Command {
 		},
 	}
 
-	command.AddCommand(s3cmd.Command(ctx, ctxCancel))
+	command.AddCommand(s3.Command(ctx, ctxCancel))
+	command.AddCommand(local.Command(ctx, ctxCancel))
 
 	return command
 }

@@ -9,7 +9,7 @@ import (
 var cancelMessage = "Backup cancelled!"
 var cancelEmoji = emoji.StopSign
 
-var CreatingBackupStatuses = spinner_status.SpinnerStatuses{
+var BackupPreparationStatuses = spinner_status.SpinnerStatuses{
 	SuccessMessage: spinner_status.SpinnerStatusMessage{
 		Message: "Backup request preparations finished",
 		Status:  emoji.CheckMark,
@@ -19,7 +19,7 @@ var CreatingBackupStatuses = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Backup request preparations in-progress",
+		Message: " Backup request preparations in-progress",
 		Status:  emoji.Emoji(""),
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
@@ -38,7 +38,7 @@ var BackupCreationStatuses = spinner_status.SpinnerStatuses{
 		Status:  emoji.CrossMark,
 	},
 	InProgressMessage: spinner_status.SpinnerStatusMessage{
-		Message: "Backup creation in-progress",
+		Message: " Backup creation in-progress",
 	},
 	CancelledMessage: spinner_status.SpinnerStatusMessage{
 		Message: cancelMessage,
