@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/cloudvlad/graphdbcli/compare/v1.3.2...v1.4.0) (2025-11-04)
+
+
+### Features
+
+* **backupcmd:** add local backup command ([81aedd9](https://github.com/cloudvlad/graphdbcli/commit/81aedd9ff0fa247a865087118f129691928e5177))
+
 ## [1.3.2](https://github.com/cloudvlad/graphdbcli/compare/v1.3.1...v1.3.2) (2025-10-27)
 
 
