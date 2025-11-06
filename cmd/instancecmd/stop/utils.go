@@ -29,7 +29,7 @@ func stopInstance() {
 		instancePath := path.Join(clustersDir, instanceName)
 		_, err := os.Stat(instancePath)
 		if err != nil {
-			logging.LOGGER.Fatal("Failed to read instance directory",
+			logging.LOGGER.Error("Failed to read instance directory",
 				zap.String("instancePath", instancePath),
 				zap.Error(err))
 		}
@@ -68,34 +68,37 @@ func stopProcess(instancePath, instanceName string) {
 	// Read the PID from the .instance_pid file
 	pidData, err := os.ReadFile(pidFilePath)
 	if err != nil {
-		logging.LOGGER.Fatal("Failed to read PID file",
+		logging.LOGGER.Error("Failed to read PID file. Skipping...",
 			zap.String("pidFile", pidFilePath),
 			zap.Error(err))
+		return
 	}
 
 	// Convert the PID to an integer
 	pid, err := strconv.Atoi(string(pidData))
 	if err != nil {
-		log.Printf("Invalid PID in file %s: %v", pidFilePath, err)
+		logging.LOGGER.Fatal("Invalid PID in file", zap.String("pidFile", pidFilePath), zap.Error(err))
 		return
 	}
 
 	var signal syscall.Signal
-
+	var shutdownKindKeyword string
 	if forceStop {
 		signal = syscall.SIGKILL
+		shutdownKindKeyword = "forceful"
 	} else {
 		signal = syscall.SIGTERM
+		shutdownKindKeyword = "graceful"
 	}
 
 	err = syscall.Kill(pid, signal)
 	if err != nil {
-		log.Printf("Failed to terminate process with PID %d: %v", pid, err)
-		return
+		logging.LOGGER.Fatal("failed to terminate process", zap.Int("pid", pid), zap.Error(err))
 	}
 
-	fmt.Printf("%s Successfully initiated instance shutdown for %s\n",
+	fmt.Printf("%s Successfully initiated %s instance shutdown for %s\n",
 		common_components.PadStatusIndicator(emoji.CheckMark.String(), 0),
+		shutdownKindKeyword,
 		instanceName)
-	logging.LOGGER.Info("successfully initiated instance shutdown", zap.String("instance name", instanceName))
+	logging.LOGGER.Info("successfully initiated instance shutdown", zap.String("instance name", instanceName), zap.Bool("forceStop", forceStop), zap.Int("pid", pid))
 }
