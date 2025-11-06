@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/cloudvlad/graphdbcli/compare/v1.4.0...v1.4.1) (2025-11-06)
+
+
+### Bug Fixes
+
+* **instancecmd:** fix instance stopping behavior ([6d21f1b](https://github.com/cloudvlad/graphdbcli/commit/6d21f1bfee654cddebf2c85e74edbf85e1ebeaec))
+* **instancecmd:** fix showing instances printing errors ([1aa2410](https://github.com/cloudvlad/graphdbcli/commit/1aa2410fc5ed621a950888c013145a9c2fcc9a5f))
+
 # [1.4.0](https://github.com/cloudvlad/graphdbcli/compare/v1.3.2...v1.4.0) (2025-11-04)
 
 
