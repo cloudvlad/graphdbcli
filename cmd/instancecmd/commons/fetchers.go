@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"graphdbcli/internal/data_objects/instance_metadata"
 	"graphdbcli/internal/tool_configurations/initialization"
+	"graphdbcli/internal/tool_configurations/logging"
 	"os"
 	"path"
 
+	"go.uber.org/zap"
 	"gopkg.in/yaml.v3"
 )
 
@@ -14,8 +16,8 @@ func CollectInstancesInformation() []instance_metadata.InstanceMetadata {
 	instancesPath := initialization.GetClustersDirectory()
 	instances, err := os.ReadDir(instancesPath)
 	if err != nil {
-		fmt.Println("Error reading clusters directory:", err)
-		os.Exit(1)
+		fmt.Printf("Error occured while reading instances directory\n")
+		logging.LOGGER.Fatal("error reading instances directory", zap.Error(err))
 	}
 
 	var instanceMetadata []instance_metadata.InstanceMetadata
@@ -34,14 +36,14 @@ func CollectInstancesInformation() []instance_metadata.InstanceMetadata {
 func GetInstanceInfo(metadataFilePath string) *instance_metadata.InstanceMetadata {
 	dataBytes, err := os.ReadFile(metadataFilePath)
 	if err != nil {
-		fmt.Println("Error reading instance metadata:", err)
+		logging.LOGGER.Error("error reading instance metadata", zap.String("metadataFilePath", metadataFilePath), zap.Error(err))
 		return nil
 	}
 
 	var meta instance_metadata.InstanceMetadata
 	err = yaml.Unmarshal(dataBytes, &meta)
 	if err != nil {
-		fmt.Println("Error unmarshaling YAML:", err)
+		logging.LOGGER.Error("error unmarshalling YAML metadata file", zap.String("metadataFilePath", metadataFilePath), zap.Error(err))
 		return nil
 	}
 
