@@ -16,7 +16,7 @@ func Command() *cobra.Command {
 	var numberOfThreads int
 	var numberOfStatementsPerRequest int
 	var interconnection float64
-	
+
 	var command = &cobra.Command{
 		Use:     "rdf_bombarder",
 		Short:   "Bombards GraphDB repository with statements",
@@ -28,7 +28,7 @@ func Command() *cobra.Command {
 		},
 	}
 
-	command.Flags().StringVarP(&instanceAddress, "instanceAddress", "a", "http://localhost:7200", "instance address")
+	command.Flags().StringVarP(&instanceAddress, "instanceAddress", "a", "http://localhost:7200", "GraphDB instance address")
 	command.Flags().StringVarP(&repoName, "repositoryName", "r", "", "repository name")
 	command.Flags().IntVarP(&numberOfNamedGraphs, "numberOfNamedGraphs", "g", 0, "number of named graphs")
 	command.Flags().IntVarP(&numberOfStatementsPerNamedGraph, "numberOfStatementsPerNamedGraph", "n", 10, "number Of Statements Per Named Graph")
