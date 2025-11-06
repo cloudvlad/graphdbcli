@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/cloudvlad/graphdbcli/compare/v1.4.1...v1.4.2) (2025-11-06)
+
+
+### Bug Fixes
+
+* **gizmocmd:** fix flag description ([50f118f](https://github.com/cloudvlad/graphdbcli/commit/50f118f39a7c2c9ce4b07920dc280bc4ce5d4128))
+
 ## [1.4.1](https://github.com/cloudvlad/graphdbcli/compare/v1.4.0...v1.4.1) (2025-11-06)
 
 
