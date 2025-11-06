@@ -8,18 +8,27 @@ import (
 )
 
 func Command() *cobra.Command {
+	var instanceAddress string
+	var repoName string
+
+	var numberOfNamedGraphs int
+	var numberOfStatementsPerNamedGraph int
+	var numberOfThreads int
+	var numberOfStatementsPerRequest int
+	var interconnection float64
+	
 	var command = &cobra.Command{
 		Use:     "rdf_bombarder",
-		Short:   "Bomabrds graphdb with statemtns",
+		Short:   "Bombards GraphDB repository with statements",
 		Example: common_components.PadExamples(examples),
 		RunE: func(cmd *cobra.Command, args []string) error {
-			bombard()
+			bombard(instanceAddress, repoName, numberOfNamedGraphs, numberOfStatementsPerNamedGraph, numberOfThreads, numberOfStatementsPerRequest, interconnection)
 
 			return nil
 		},
 	}
 
-	command.Flags().StringVarP(&instanceAddress, "instanceAddress", "a", "", "instance address")
+	command.Flags().StringVarP(&instanceAddress, "instanceAddress", "a", "http://localhost:7200", "instance address")
 	command.Flags().StringVarP(&repoName, "repositoryName", "r", "", "repository name")
 	command.Flags().IntVarP(&numberOfNamedGraphs, "numberOfNamedGraphs", "g", 0, "number of named graphs")
 	command.Flags().IntVarP(&numberOfStatementsPerNamedGraph, "numberOfStatementsPerNamedGraph", "n", 10, "number Of Statements Per Named Graph")
@@ -27,7 +36,6 @@ func Command() *cobra.Command {
 	command.Flags().IntVarP(&numberOfStatementsPerRequest, "numberOfStatementsPerRequest", "q", 10, "number of statements per request")
 	command.Flags().Float64VarP(&interconnection, "interconnection", "i", 0.0, "interconnection")
 
-	cobra.MarkFlagRequired(command.Flags(), "instanceAddress")
 	cobra.MarkFlagRequired(command.Flags(), "repositoryName")
 
 	return command
