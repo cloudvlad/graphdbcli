@@ -45,13 +45,13 @@ Find out what are the properties that are send from the workbench to the backend
 | throwQueryEvaluationExceptionOnTimeout | false                                         | boolean          |                 |                     |
 | queryTimeout                           | 0                                             | uint             |                 |                     |
 | queryLimitResults                      | 0                                             | uint             |                 |                     |
-| enableLiteralIndex                     | true                                          | bool             |                 | no                  |
-| rdfsSubClassReasoning                  | true                                          | bool             |                 | no                  |
-| validationEnabled                      | true                                          | bool             |                 | no                  |
+| enableLiteralIndex                     | true                                          | boolean          |                 | no                  |
+| rdfsSubClassReasoning                  | true                                          | boolean          |                 | no                  |
+| validationEnabled                      | true                                          | boolean          |                 | no                  |
 | storageFolder                          | "storage"                                     | string           |                 | no                  |
 | transactionalValidationLimit           | 500000                                        | string           |                 | no                  |
 | imports                                | ""                                            | string           |                 | no                  |
-| inMemoryLiteralProperties              | true                                          | bool             |                 | no                  |
+| inMemoryLiteralProperties              | true                                          | boolean          |                 | no                  |
 | defaultNS                              | ""                                            | string           |                 | no                  |
 | baseURL                                | http://example.org/owlim#                     | IRI              |                 | no                  |
 | repositoryType                         | file-repository                               | string           |                 | no                  |
