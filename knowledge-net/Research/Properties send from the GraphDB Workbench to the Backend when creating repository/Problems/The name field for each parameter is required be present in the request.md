@@ -5,12 +5,3 @@
 	"value":""
 },
 ```
-
-
-```
-"my-property": {
-  "name": "my-property"
-  "label": "wtf"
-  "value": "is-going-on"
-}
-```

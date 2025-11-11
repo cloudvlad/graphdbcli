@@ -1,6 +1,6 @@
 curl -X POST http://localhost:7200/rest/repositories -H 'Accept: application/json' -H 'Content-Type: application/json' -d '
     {
-        "id": "no_labels_no_names",
+        "id": "no_labels_no_names2",
         "location": "",
         "title": "",
         "type": "graphdb",
@@ -10,24 +10,31 @@ curl -X POST http://localhost:7200/rest/repositories -H 'Accept: application/jso
                 "value":"0"
             },
             "cacheSelectNodes":{
+                "name":"cacheSelectNodes",
                 "value":"true"
             },
             "rdfsSubClassReasoning":{
+                "name":"rdfsSubClassReasoning",
                 "value":"true"
             },
             "validationEnabled":{
+                "name":"validationEnabled",
                 "value":"true"
             },
             "ftsStringLiteralsIndex":{
+                "name":"ftsStringLiteralsIndex",
                 "value":"default"
             },
             "shapesGraph":{
+                "name":"shapesGraph",
                 "value":"http://rdf4j.org/schema/rdf4j#SHACLShapeGraph"
             },
             "parallelValidation":{
+                "name":"parallelValidation",
                 "value":"true"
             },
             "checkForInconsistencies":{
+                "name":"checkForInconsistencies",
                 "value":"false"
             },
             "performanceLogging":{
@@ -117,7 +124,6 @@ curl -X POST http://localhost:7200/rest/repositories -H 'Accept: application/jso
             },
             "defaultNS":{
                 "name":"defaultNS",
-				"label":"Default namespaces for imports('\'';'\'' delimited)",
                 "value":""
             },
             "enableContextIndex":{
