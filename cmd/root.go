@@ -5,6 +5,7 @@ package cmd
 import (
 	"context"
 	"graphdbcli/cmd/backupcmd"
+	"graphdbcli/cmd/beamcmd"
 	"graphdbcli/cmd/gizmocmd"
 	"graphdbcli/cmd/instancecmd"
 	"graphdbcli/cmd/licensecmd"
@@ -41,6 +42,7 @@ func Execute() error {
 	rootCmd.AddCommand(repositorycmd.Repository(ctx, cancel))
 	rootCmd.AddCommand(workbenchcmd.Workbench(ctx, cancel))
 	rootCmd.AddCommand(rdf4j.Rdf4J(ctx, cancel))
+	rootCmd.AddCommand(beamcmd.Beam(ctx, cancel))
 
 	return rootCmd.ExecuteContext(ctx)
 }
