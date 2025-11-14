@@ -24,7 +24,7 @@ var isRegexPattern bool
 // stopInstance manages stopping one or more instances. If isRegexPattern is true,
 // it will stop all instances matching the regex pattern in instanceName.
 func stopInstance() {
-	clustersDir := ini.GetClustersDirectory()
+	clustersDir := ini.GetWorkbenchesDirectory()
 	if !isRegexPattern {
 		instancePath := path.Join(clustersDir, instanceName)
 		_, err := os.Stat(instancePath)
