@@ -101,7 +101,7 @@ func configureInstanceLicense(licenseName, instanceName string) {
 			zap.Error(err))
 	}
 
-	segments := append([]string{ini.GetClustersDirectory(), instanceName}, tc.DefaultLicensePath...)
+	segments := append([]string{ini.GetWorkbenchesDirectory(), instanceName}, tc.DefaultLicensePath...)
 	nodeLicenseFullPath := path.Join(segments...)
 
 	logging.LOGGER.Debug("Configuring licesense for instance", zap.String("instanceName", instanceName))

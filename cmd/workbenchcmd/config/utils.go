@@ -20,12 +20,6 @@ var (
 func ConfigureCustomWorkbench(workbenchName string) {
 	workbenchesDirectory := initialization.GetWorkbenchDirectory()
 
-	_, err := os.Stat(workbenchesDirectory)
-	if err != nil {
-		fmt.Printf("Workbench '%s' not found\n", workbenchName)
-		logging.LOGGER.Fatal("error")
-	}
-
 	workbenchPath := filepath.Join(workbenchesDirectory, workbenchName)
 
 	overrideConfigurations(workbenchPath)

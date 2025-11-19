@@ -1,14 +1,23 @@
 package add
 
+import (
+	"fmt"
+	"graphdbcli/internal/tool_configurations/initialization"
+)
+
 var examples = `graphdbcli workbench add test-workbench ./new-feature
-graphdbcli wb a test-workbench ./new-feature
-graphdbcli wb add test-workhench /home/mark/dev/new-feature
+graphdbcli wb add test-workbench ./new-feature
+graphdbcli wb add test-workbench /home/mark/dev/new-feature
 `
 
-var shortDescription = `Adds GraphDB Workbench codebase instances`
+var shortDescription = `Add a GraphDB Workbench codebase instance`
 
-var longDescription = `Adds GraphDB Workbench codebase instance
+var longDescription = fmt.Sprintf(`Add a GraphDB Workbench codebase instance.
 
-Adds a GraphDB workbench codebase instance to the internal structure for 
-further management from the CLI.
-`
+This command registers a GraphDB Workbench codebase in the CLI's internal
+workspace so it can be managed using the CLI. Provide the path to a
+directory containing a Workbench codebase; the command copies that
+directory into the CLI-managed workbenches directory.
+
+  Workbenches directory: %s
+`, initialization.GetWorkbenchDirectory())
