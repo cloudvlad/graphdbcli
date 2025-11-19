@@ -52,15 +52,5 @@ func validation(config repository.Config) error {
 		return err
 	}
 
-	err = config.Params.ValidateQueryTimeout()
-	if err != nil {
-		return err
-	}
-
-	err = config.Params.ValidateQueryLimitResults()
-	if err != nil {
-		return err
-	}
-
 	return nil
 }
