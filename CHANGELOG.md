@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/cloudvlad/graphdbcli/compare/v1.4.2...v1.5.0) (2025-11-19)
+
+
+### Features
+
+* **repocmd:** add create repository command ([07491b5](https://github.com/cloudvlad/graphdbcli/commit/07491b58bf8291800f47e8cf558843bfa6654098))
+
 ## [1.4.2](https://github.com/cloudvlad/graphdbcli/compare/v1.4.1...v1.4.2) (2025-11-06)
 
 
