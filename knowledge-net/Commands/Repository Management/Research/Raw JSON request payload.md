@@ -1,3 +1,8 @@
+---
+version:
+  - 11.1.2
+  - 11.1.3
+---
 ```json
 {
   "id": "vlads-repo",
@@ -208,6 +213,3 @@
   "location": ""
 }
 ```
-
-
-curl -X PUT <base_url>/rest/repositories/<repo_id> -H 'Accept: application/json' -H 'Content-Type: application/json' -d  ''

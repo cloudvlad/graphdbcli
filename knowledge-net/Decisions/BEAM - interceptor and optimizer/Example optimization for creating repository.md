@@ -1,7 +1,5 @@
 ## Before converting the payload (sent to Beam)
 
-
-
 ```json
 { "id": "test-repo-1"}
 ```

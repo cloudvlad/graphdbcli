@@ -1,8 +1,7 @@
 ---
-tags:
-  - api
-  - repository
-version: 11.1.2
+version:
+  - 11.1.2
+  - 11.1.3
 ---
 ## Objective
 Find out what are the properties that are send from the workbench to the backend when creating a repository and what are their constraints/limits.
@@ -58,8 +57,9 @@ Find out what are the properties that are send from the workbench to the backend
 | type                                   | graphdb                                       | string           |                 | no                  |
 | location                               | ""                                            | string           |                 | no                  |
 
-There was a property - `sesameType` , found [here](https://graphdb.ontotext.com/documentation/11.1/manage-repos-with-restapi.html#edit-a-repository-s-configuration) was is not part of the repository configurations from [here](https://graphdb.ontotext.com/documentation/11.1/configuring-a-repository.html#configuration-parameters).
-
 ^gdb-11-1-2-properties
+
+
+
 ## Conclusion
 There are many properties, that are either not exposed for override, or not used internally.

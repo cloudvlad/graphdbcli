@@ -32,24 +32,12 @@ type Params struct {
 	ThrowQueryEvaluationExceptionOnTimeout bool     `json:"throwQueryEvaluationExceptionOnTimeout"`
 	QueryTimeout                           uint32   `json:"queryTimeout"`
 	QueryLimitResults                      uint32   `json:"queryLimitResults"`
-	// Never used, but required
-	EnableLiteralIndex           bool   `json:"enableLiteralIndex"`
-	RdfsSubClassReasoning        bool   `json:"rdfsSubClassReasoning"`
-	ValidationEnabled            bool   `json:"validationEnabled"`
-	StorageFolder                string `json:"storageFolder"`
-	TransactionalValidationLimit string `json:"transactionalValidationLimit"`
-	Imports                      string `json:"imports"`
-	InMemoryLiteralProperties    bool   `json:"inMemoryLiteralProperties"`
-	DefaultNS                    string `json:"defaultNS"`
-	BaseURL                      string `json:"baseURL"`
-	RepositoryType               string `json:"repositoryType"`
 }
 
 type Config struct {
 	ID       string `json:"id"`
 	Title    string `json:"title"`
 	Params   Params `json:"params"`
-	Type     string `json:"type"`
 	Location string `json:"location"`
 }
 
@@ -60,20 +48,4 @@ func (c *Config) ToJSON() (string, error) {
 		return "", err
 	}
 	return string(b), nil
-}
-
-// SetDefaults sets the default values for fields that are not typically configured.
-func (c *Config) SetDefaults() {
-	c.Type = "graphdb"
-	p := c.Params
-	p.EnablePredicateList = true
-	p.RdfsSubClassReasoning = true
-	p.ValidationEnabled = true
-	p.StorageFolder = "storage"
-	p.TransactionalValidationLimit = "500000"
-	p.Imports = ""
-	p.InMemoryLiteralProperties = true
-	p.DefaultNS = ""
-	p.BaseURL = "http://example.org/owlim#"
-	p.RepositoryType = "file-repository"
 }

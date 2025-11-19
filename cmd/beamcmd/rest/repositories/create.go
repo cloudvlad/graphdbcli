@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"graphdbcli/internal/data_objects/repository"
 	"graphdbcli/internal/tool_configurations/logging"
 	"io"
 	"net/http"
@@ -16,18 +17,18 @@ func HandleCreate(req *http.Request) {
 	// Read the request body
 	defer req.Body.Close()
 	bodyBefore, _ := io.ReadAll(req.Body)
-	var input map[string]interface{}
-	if err := json.Unmarshal(bodyBefore, &input); err != nil {
+	var repoConfig repository.Config
+	if err := json.Unmarshal(bodyBefore, &repoConfig); err != nil {
 		// handle error (could log or return)
 		logging.LOGGER.Error("unable to unmarshal body", zap.Error(err))
-		input = map[string]interface{}{}
+		return
 	}
 
 	// Log before conversion
 	logging.LOGGER.Debug("body before conversion", zap.String("body", string(bodyBefore)))
 
 	// Convert to old format
-	oldFormat := FillExpectedFormat(input)
+	oldFormat := FillExpectedFormat(repoConfig)
 
 	bodyAfter, err := json.Marshal(oldFormat)
 	if err == nil {
@@ -39,7 +40,7 @@ func HandleCreate(req *http.Request) {
 }
 
 // FillExpectedFormat takes a new API Payload format (even partial) and returns the fully populated old format.
-func FillExpectedFormat(input map[string]interface{}) map[string]interface{} {
+func FillExpectedFormat(repoConfig repository.Config) map[string]interface{} {
 	paramTemplate := map[string]map[string]interface{}{
 		"queryTimeout":                           {"name": "queryTimeout", "label": "Query timeout (seconds)", "value": "0"},
 		"cacheSelectNodes":                       {"name": "cacheSelectNodes", "label": "Cache select nodes", "value": "true"},
@@ -83,25 +84,11 @@ func FillExpectedFormat(input map[string]interface{}) map[string]interface{} {
 
 	// Start with the template for the top-level object
 	oldTemplate := map[string]interface{}{
-		"id":         "",
-		"location":   "",
-		"title":      "",
-		"type":       "graphdb",
-		"sesameType": "graphdb:SailRepository",
+		"id":       repoConfig.ID,
+		"location": repoConfig.Location,
+		"title":    repoConfig.Title,
 	}
 
-	// Copy top-level fields from input if present
-	for _, key := range []string{"id", "location", "title", "type"} {
-		if v, ok := input[key]; ok {
-			oldTemplate[key] = v
-		}
-	}
-
-	// Always set sesameType
-	oldTemplate["sesameType"] = "graphdb:SailRepository"
-
-	// Merge params
-	params := map[string]map[string]interface{}{}
 	toString := func(val interface{}) string {
 		if val == nil {
 			return ""
@@ -109,7 +96,11 @@ func FillExpectedFormat(input map[string]interface{}) map[string]interface{} {
 		return fmt.Sprintf("%v", val)
 	}
 
-	if inputParams, ok := input["params"].(map[string]interface{}); ok {
+	params := map[string]map[string]interface{}{}
+
+	paramsBytes, _ := json.Marshal(repoConfig.Params)
+	json.Unmarshal(paramsBytes, &params)
+	if params != nil {
 		for k, v := range paramTemplate {
 			params[k] = map[string]interface{}{
 				"name":  v["name"],

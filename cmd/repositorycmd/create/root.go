@@ -25,8 +25,6 @@ func Create(ctx context.Context, ctxCancel context.CancelFunc) *cobra.Command {
 		Example: common_components.PadExamples(examples),
 		Aliases: []string{"c"},
 		Args: func(cmd *cobra.Command, args []string) error {
-			rc.SetDefaults()
-
 			rc.ID = pf.Repository
 			rc.Params.EntityIdSize = 32
 

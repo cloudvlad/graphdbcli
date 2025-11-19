@@ -25,7 +25,10 @@ func createRepository(ctx context.Context, ctxCancel context.CancelFunc, config 
 		p.Run()
 	}()
 
-	apiPayload, err := json.MarshalIndent(config.ToAcceptableJson(), "", "  ")
+	aaa, _ := config.ToJSON()
+	println(string(aaa))
+
+	apiPayload, err := json.MarshalIndent(aaa, "", "  ")
 	if err != nil {
 		cc.HandleEvent(&cc.Failure, p)
 		logging.LOGGER.Fatal("error marshaling API payload:", zap.Error(err))
