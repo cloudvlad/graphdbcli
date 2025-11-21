@@ -1,6 +1,7 @@
 package repositories
 
 import (
+	"graphdbcli/cmd/beamcmd/rest/repositories/create"
 	"net/http"
 	"regexp"
 )
@@ -23,7 +24,7 @@ func Handle(req *http.Request) {
 	case reRepositories.MatchString(path) && method == http.MethodGet:
 		HandleGetAll(req)
 	case reRepositories.MatchString(path) && method == http.MethodPost:
-		HandleCreate(req)
+		create.HandleCreate(req)
 
 	// /rest/repositories/{repositoryID}
 	case reRepositoryID.MatchString(path) && method == http.MethodGet:

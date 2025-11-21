@@ -5,13 +5,16 @@ version:
 ---
 ```json
 {
-  "id": "vlads-repo",
+  "id": null,
+  "title": null,
+  "type": "graphdb",
+  "sesameType": null,
+  "location": null,
   "params": {
     "queryTimeout": {
       "name": "queryTimeout",
       "label": "Query timeout (seconds)",
-      "value": 0,
-      "isNumber": true
+      "value": "0"
     },
     "cacheSelectNodes": {
       "name": "cacheSelectNodes",
@@ -56,7 +59,7 @@ version:
     "performanceLogging": {
       "name": "performanceLogging",
       "label": "Log the execution time per shape",
-      "value": "true"
+      "value": "false"
     },
     "disableSameAs": {
       "name": "disableSameAs",
@@ -71,8 +74,7 @@ version:
     "entityIndexSize": {
       "name": "entityIndexSize",
       "label": "Entity index size",
-      "value": 10000000,
-      "isNumber": true
+      "value": "10000000"
     },
     "dashDataShapes": {
       "name": "dashDataShapes",
@@ -82,8 +84,7 @@ version:
     "queryLimitResults": {
       "name": "queryLimitResults",
       "label": "Limit query results",
-      "value": 0,
-      "isNumber": true
+      "value": "0"
     },
     "throwQueryEvaluationExceptionOnTimeout": {
       "name": "throwQueryEvaluationExceptionOnTimeout",
@@ -103,8 +104,7 @@ version:
     "validationResultsLimitPerConstraint": {
       "name": "validationResultsLimitPerConstraint",
       "label": "Validation results limit per constraint",
-      "value": 1000,
-      "isNumber": true
+      "value": "1000"
     },
     "enablePredicateList": {
       "name": "enablePredicateList",
@@ -124,7 +124,7 @@ version:
     "logValidationPlans": {
       "name": "logValidationPlans",
       "label": "Log the executed validation plans",
-      "value": "true"
+      "value": "false"
     },
     "imports": {
       "name": "imports",
@@ -139,12 +139,12 @@ version:
     "isShacl": {
       "name": "isShacl",
       "label": "Enable SHACL validation",
-      "value": "true"
+      "value": "false"
     },
     "ruleset": {
       "name": "ruleset",
       "label": "Ruleset",
-      "value": "/home/vlad/.gdb/instances/jolly_hertz/work/tmp/graphdb/builtin_owl2-qltmp1761583708338.pie"
+      "value": "rdfsplus-optimized"
     },
     "readOnly": {
       "name": "readOnly",
@@ -179,12 +179,12 @@ version:
     "logValidationViolations": {
       "name": "logValidationViolations",
       "label": "Log validation violations",
-      "value": "true"
+      "value": "false"
     },
     "globalLogValidationExecution": {
       "name": "globalLogValidationExecution",
       "label": "Log every execution step of the SHACL validation",
-      "value": "true"
+      "value": "false"
     },
     "entityIdSize": {
       "name": "entityIdSize",
@@ -204,12 +204,8 @@ version:
     "validationResultsLimitTotal": {
       "name": "validationResultsLimitTotal",
       "label": "Validation results limit total",
-      "value": 1000000,
-      "isNumber": true
+      "value": "1000000"
     }
-  },
-  "title": "",
-  "type": "graphdb",
-  "location": ""
+  }
 }
 ```

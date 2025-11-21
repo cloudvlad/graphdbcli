@@ -3,7 +3,6 @@ package create
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	cc "graphdbcli/internal/channels/commons"
 	"graphdbcli/internal/data_objects/repository"
 	"graphdbcli/internal/tool_configurations/logging"
@@ -25,14 +24,12 @@ func createRepository(ctx context.Context, ctxCancel context.CancelFunc, config 
 		p.Run()
 	}()
 
-	aaa, _ := config.ToJSON()
-	println(string(aaa))
-
-	apiPayload, err := json.MarshalIndent(aaa, "", "  ")
+	apiPayload, err := config.ToJSON()
 	if err != nil {
 		cc.HandleEvent(&cc.Failure, p)
 		logging.LOGGER.Fatal("error marshaling API payload:", zap.Error(err))
 	}
+	println(string(apiPayload))
 
 	cc.HandleEvent(&cc.Success, p)
 

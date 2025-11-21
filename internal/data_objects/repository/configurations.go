@@ -42,10 +42,11 @@ type Config struct {
 }
 
 // ToJSON returns the JSON representation of the Config struct as a string
-func (c *Config) ToJSON() (string, error) {
-	b, err := json.MarshalIndent(c, "", "  ")
+func (c *Config) ToJSON() ([]byte, error) {
+	b, err := json.Marshal(c)
+
 	if err != nil {
-		return "", err
+		return nil, err
 	}
-	return string(b), nil
+	return b, nil
 }
